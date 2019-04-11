@@ -1,0 +1,10 @@
+name:     TGH
+desc:     Teorie Grafů a her
+disabled: false
+access:   everyone
+
+teachers:
+- jan.hybs
+- jan.brezina
+
+students: []

@@ -1,0 +1,23 @@
+# files in input and output dir will not be as a part of this repository
+**/problems/*/input/*
+**/problems/*/output/*
+**/problems/*/.error/*
+
+# except the files ending with .s
+!**/problems/*/.error/*.s
+!**/problems/*/input/*.s
+!**/problems/*/output/*.s
+
+# binary files will also be ignored
+**/problems/*/main
+**/problems/*/main.class
+
+
+# the results will not be part of a repository
+**/results/*
+
+# only README.md file will be allowed
+!**/results/README.md
+
+# ignore logs starting with dot (.)
+.*.log
