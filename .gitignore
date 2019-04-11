@@ -4,7 +4,6 @@
 **/problems/*/.error/*
 
 # except the files ending with .s
-!**/problems/*/.error/*.s
 !**/problems/*/input/*.s
 !**/problems/*/output/*.s
 
@@ -21,3 +20,4 @@
 
 # ignore logs starting with dot (.)
 .*.log
+.error
