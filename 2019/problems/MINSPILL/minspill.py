@@ -3,7 +3,7 @@ from random import randint
 import random
 import sys
 import io
-#import numpy as np
+import numpy as np
 #import statprof
 #from contextlib import contextmanager
 import heapq
@@ -18,9 +18,13 @@ import heapq
 
 
 class State:
-    def __init__(self, i, j, spill):
+    def __init__(self, i, j, spill, cost):
         self.i, self. j = i, j
+        # spill from i to  j ( how the state is formed efectively give parent state)
         self.spill = spill
+        # n liters to spill from i to j
+        self.cost = cost
+        # cost of the state
 
 class ImplicitDijkstra:
     def __init__(self, in_stream):
@@ -31,28 +35,25 @@ class ImplicitDijkstra:
         self.queue = []
 
 
-    def pour(self, volumes, cost, i, j):
+    def pour(self, volumes, prev_cost, i, j):
         new_volumes  = list(volumes)
         free = self.volumes[j] - new_volumes[j]
         spill = min(free, new_volumes[i])
         new_volumes[i] -= spill
         new_volumes[j] += spill
         new_volumes = tuple(new_volumes)
-        new_state = State(i, j, spill)
-        self.add(new_volumes, new_state, cost + spill)
+        new_cost = (prev_cost[0] + spill, prev_cost[1] + 1)
+        new_state = State(i, j, spill, new_cost)
 
-    def add(self, new_volumes, new_state, new_cost):
-        if new_volumes not in self.states:
-            self.states[new_volumes] = new_state
-            heapq.heappush(self.queue, (new_cost, new_volumes))
-            # check and save results
-            if self.results[new_volumes[new_state.i]] is None:
-                self.results[new_volumes[new_state.i]] = new_volumes
-                self.n_results += 1
+        if new_volumes not in self.states or new_state.cost < self.states[new_volumes].cost:
+            self.add(new_volumes, new_state)
+            return True
+        else:
+            return False
 
-            if self.results[new_volumes[new_state.j]] is None:
-                self.results[new_volumes[new_state.j]] = new_volumes
-                self.n_results += 1
+    def add(self, new_volumes, new_state):
+        self.states[new_volumes] = new_state
+        heapq.heappush(self.queue, (new_state.cost, new_volumes))
 
     def run_dijkstra(self):
         i_fill = max(range(len(self.volumes)), key=self.volumes.__getitem__)
@@ -62,35 +63,58 @@ class ImplicitDijkstra:
         volumes = len(self.volumes) * [0]
         volumes[i_fill] = self.volumes[i_fill]
         volumes = tuple(volumes)
-        state = State(i_fill, i_fill, self.volumes[i_fill])
-        self.add(volumes, state, 0)
+        cost = (0, 0)
+        state = State(i_fill, i_fill, self.volumes[i_fill], cost)
+        self.add(volumes, state)
 
         while self.queue and self.n_results < len(self.results):
             cost, volumes = heapq.heappop(self.queue)
             state = self.states[volumes]
-            for l in [state.i, state.j]:
+            if state.cost < cost:
+                # skip closed states
+                continue
+
+            # New states can be obtained only by interacting with vessels that have been changed recently.
+            # Should be possible to reduce l to [state.i, state.j], but that way I loose some states, not
+            # know why exactly.
+            for l in range(len(self.volumes)):
                 for k in range(len(self.volumes)):
-                    if k != state.i and k != state.j:
+                    if k != l:  #state.i and k != state.j:
                         self.pour(volumes, cost, l, k)
-                        self.pour(volumes, cost, k, l)
+                        #self.pour(volumes, cost, k, l)
+                            #if k not in {state.i, state.j} and l not in {state.i, state.j}:
+                            #    sys.stderr.write("kl: {} {}  ij: {} {} volumes: {}\n".format(k,l, state.i, state.j, str(volumes)))
+
+            # Final distance to current state: check and save results
+            if self.results[volumes[state.i]] is None:
+                self.results[volumes[state.i]] = volumes
+                self.n_results += 1
+
+            if self.results[volumes[state.j]] is None:
+                self.results[volumes[state.j]] = volumes
+                self.n_results += 1
+
         sys.stderr.write("#states: {}\n".format(len(self.states)))
 
     def get_path(self, volumes):
         path = []
         cost = 0
         state = self.states[tuple(volumes)]
+        orig_cost = state.cost
         while state.i != state.j:
+            #path.append((state.i, state.j, tuple(volumes)))
             path.append((state.i, state.j))
             cost += state.spill
             volumes[state.i] += state.spill
             volumes[state.j] -= state.spill
             state = self.states[tuple(volumes)]
+        assert orig_cost == (cost, len(path))
         return list(reversed(path)), cost
 
     def output_results(self, stream):
         for vol, res in enumerate(self.results[1:]):
             if res is None:
-                stream.write("{} {} {}\n".format(vol+1, -1, -1))
+                stream.write("{}\n".format(vol+1))
             else:
                 path, cost = self.get_path(list(res))
                 stream.write("{} {} {}\n".format(
