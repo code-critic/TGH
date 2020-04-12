@@ -28,7 +28,7 @@ TODO:
 '''
 
 class EventData:
-    _max_int = sys.maxint-1
+    _max_int = int(4e9)
     def __init__(self):
         self.status = 0 
         self.connections = []
@@ -68,14 +68,14 @@ class Idos :
         We first read connection edges and create vertices per 
         '''
 
-        row=in_stream.next()
+        row=in_stream.readline()
         (n_stations, n_connections) = [int(item) for item in row.split()]
 
         # for every event list of edges in form (target_event, travel_time)    
         # events per station in order to create waiting connections.
-        station_times = d = [[] for i in xrange(n_stations)]
+        station_times = d = [[] for i in range(n_stations)]
         for i_conn in range(n_connections) :
-            row = in_stream.next()
+            row = in_stream.readline()
             #print "row: ", row
             (u,v,t_leave, t_travel) = [int(item) for item in row.split()]
 
@@ -101,7 +101,7 @@ class Idos :
                 
         self.topological_sort()
         #print self.topological
-        #for key,e in self.events.iteritems():
+        #for key,e in self.events.items():
         #    print >>sys.stderr, key, e.__dict__
         
     def topological_sort(self):
@@ -118,7 +118,7 @@ class Idos :
         
         self.topological=[]
         stack=[]
-        for (event, event_data) in self.events.iteritems():
+        for (event, event_data) in self.events.items():
             if (not event_data.visited()) :
                 stack.append(event)
                 event_data.visit()
@@ -198,7 +198,7 @@ class Idos :
         self.events[event].n_use +=1
         
         # Remove unused events.
-        for event, data in self.events.iteritems():
+        for event, data in self.events.items():
             if data.previous_all:
                 if data.n_use == 0:
                     # keep only waiting edge
@@ -213,7 +213,7 @@ class Idos :
         string_stream = io.StringIO()
         n_edges=0
         stations=[]
-        for event,data in self.events.iteritems():
+        for event,data in self.events.items():
             stations.append(event[0])
             #print >>sys.stderr, data.connections
             for ngh in data.connections:                
@@ -254,7 +254,7 @@ class Idos :
         Read setting from the input stream, returns the path or dag of the solution. Or empty list if no path
         exists.
         '''
-        row = in_stream.next()
+        row = in_stream.readline()
         #print "case: ", row 
         (start_station, target_station, start_time) = [int(item) for item in row.split()]
         # skip all up to the start event
@@ -372,7 +372,7 @@ def make_data(in_stream, problem_size):
 def solve(in_stream, out_stream) :
     idos = Idos()
     idos.read_graph(in_stream)
-    n_cases = int(in_stream.next())
+    n_cases = int(in_stream.readline())
     for i_case in range(0,n_cases) :        
         path = idos.solve_case(in_stream)
         assert path != None, "Non-unique solution."
