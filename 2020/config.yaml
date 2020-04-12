@@ -1,34 +1,6 @@
 
-#- id: P01
-  #name: problem-01
-  #timeout: 120 # max time per solution, default is 60
-  #reference:
-    #name: main.py
-    #lang: PY-367
-  #tests:
-    #- id: HELLO-WORLD
-    #- id: HELLO-WORLD-2
-      #size: 50
-    #- id: HELLO-WORLD-3
-      #random: 5
-      #size: 15
-
-
-#- id: P02
-  #name: problem-02
-  #avail: 2019-03-11 16:00:00
-  #reference:
-    #name: foobar.py
-    #lang: PY-367
-  #tests:
-    #- id: HELLO-WORLD
-    #- id: HELLO-WORLD-2
-      #size: 50
-    #- id: HELLO-WORLD-3
-      #random: 5
-      #size: 15
-
-# OK, checked: 11.4.2019     
+# generated outputs 12.4.2020    
+# OK, checked: 12.4.2020    
 - id: MINSPILL
   name: Přelévání nádob
   avail: 2020-09-30 00:00:00
@@ -50,9 +22,9 @@
   - id: MINSPILL_19000.s    
     timeout: 0.3         # 0.5s
   - id: MINSPILL_44000.s
-    timeout: 0.7          # 1s
+    timeout: 0.7          # 20s
   - id: MINSPILL_440000.s    
-    timeout: 8        # 8s
+    timeout: 8        # 31s
 #  - id: MINSPILL_1e6.s         # reach global timeout in docker
 #    timeout: 26         # 27s
 
@@ -64,24 +36,35 @@
     name: idos.py
     lang: PY-367
   tests:
-  - id: IDOS_1          
-    timeout: 0.1           # 0.070 s
-  - id: IDOS_2
-    timeout: 0.1           # 0.070 s
+  - id: idos_3.s          
+    timeout: 10           # 0.070 s
+  - id: idos_5.s
+    timeout: 10           # 0.070 s
   
-  - id: IDOS_3
-    size: 10
-    timeout: 0.2           # 0.1 s
-  - id: IDOS_4
-    size: 20
-    timeout: 0.4           # 0.2 s
-    random: true
-  - id: IDOS_5
-    size: 100
-    timeout: 2             # 1s
-  - id: IDOS_6
-    size: 200
-    timeout: 5             # 2s
+  - id: idos_8.s
+    timeout: 10           # 0.1 s
+  - id: idos_10.s
+    timeout: 10           # 0.1 s
+  - id: idos_20.s
+    timeout: 10           # 0.1 s
+  - id: idos_100.s
+    timeout: 10           # 0.1 s
+  - id: idos_200.s
+    timeout: 10           # 0.1 s
+  - id: idos_1000.s
+    timeout: 10           # 0.1 s
+
+    
+  #- id: idos_10.s
+    ##size: 20
+    #timeout: 0.4           # 0.2 s
+    ##random: true
+  #- id: idos_20.s
+    ##size: 100
+    #timeout: 2             # 1s
+  #- id: IDOS_6
+    ##size: 200
+    #timeout: 5             # 2s
 # works localy but not on server, unknown error
 #  - id: IDOS_7
 #    problem_size: 800
@@ -549,3 +532,35 @@
     #- id: WEBISL_case_9
       #size: 500000
       #timeout: 8                 # 5 s
+
+      
+      
+      
+#- id: P01
+  #name: problem-01
+  #timeout: 120 # max time per solution, default is 60
+  #reference:
+    #name: main.py
+    #lang: PY-367
+  #tests:
+    #- id: HELLO-WORLD
+    #- id: HELLO-WORLD-2
+      #size: 50
+    #- id: HELLO-WORLD-3
+      #random: 5
+      #size: 15
+
+
+#- id: P02
+  #name: problem-02
+  #avail: 2019-03-11 16:00:00
+  #reference:
+    #name: foobar.py
+    #lang: PY-367
+  #tests:
+    #- id: HELLO-WORLD
+    #- id: HELLO-WORLD-2
+      #size: 50
+    #- id: HELLO-WORLD-3
+      #random: 5
+      #size: 15
