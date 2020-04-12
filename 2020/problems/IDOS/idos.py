@@ -4,8 +4,8 @@ from optparse import OptionParser
 from random import randint
 import random
 import os, sys, json
+import io
 import math
-import StringIO
 
 
 
@@ -210,7 +210,7 @@ class Idos :
     
     
     def graph_output(self, stream):
-        string_stream = StringIO.StringIO()
+        string_stream = io.StringIO()
         n_edges=0
         stations=[]
         for event,data in self.events.iteritems():
@@ -301,7 +301,7 @@ def make_data(in_stream, problem_size):
     For every station, get random number of outgoing connections,
     random outcome times, random target stations, random travel time.
     '''
-    graph_stream = StringIO.StringIO()
+    graph_stream = io.StringIO()
     
     graph = []
     for i_station in range(problem_size):
@@ -337,7 +337,7 @@ def make_data(in_stream, problem_size):
     graph = Idos()
     graph.read_graph(graph_stream)
     
-    query_stream = StringIO.StringIO()
+    query_stream = io.StringIO()
     # queries
     n_queries = int(1 + math.sqrt(problem_size))
     query_stream.write("{0}\n".format(n_queries))
@@ -349,7 +349,7 @@ def make_data(in_stream, problem_size):
         time =  random.randrange(0, 60*24/2)        
         case = "{0} {1} {2}\n".format(start, target, time)
         graph.reset()
-        path = graph.solve_case(StringIO.StringIO(case), check_unique=True)        
+        path = graph.solve_case(io.StringIO(case), check_unique=True)        
         if len(path) != 1:           
             graph.use_events_on_path(path)
             query_stream.write(case)
