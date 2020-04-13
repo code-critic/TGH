@@ -21,10 +21,12 @@
         
   - id: MINSPILL_19000.s    
     timeout: 0.3         # 0.5s
-  - id: MINSPILL_44000.s
-    timeout: 6           # 20s
+#  - id: MINSPILL_44000.s
+#    timeout: 6           # 25s
+  - id: MINSPILL_49346771.s   # 6s, 200k states
+    timeout: 2
   - id: MINSPILL_440000.s    
-    timeout: 8           # 31s
+    timeout: 8           # 33...s
 #  - id: MINSPILL_1e6.s         # reach global timeout in docker
 #    timeout: 26         # 27s
 

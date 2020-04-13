@@ -1,9 +1,8 @@
 from optparse import OptionParser
-from random import randint
 import random
 import sys
 import io
-import numpy as np
+#import numpy as np
 #import statprof
 #from contextlib import contextmanager
 import heapq
@@ -130,10 +129,10 @@ def solve(in_stream, out_stream):
 
 def make_data(in_stream, problem_size):
     size = problem_size
-    max_vol = int( size ** 0.3)
+    max_vol = max(3, int( size ** 0.3))
     volumes = []
     while size > 2:
-        vol = randint(2, max_vol)
+        vol = random.randint(2, max_vol)
         volumes.append(vol)
         size = size / vol
     problem_setup = io.StringIO()
