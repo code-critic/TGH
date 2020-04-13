@@ -1,0 +1,824 @@
+\documentclass[a4paper,10pt]{article}
+%\usepackage[active]{srcltx}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+%
+\newtheorem{theorem}{Věta}[section]
+\newtheorem{proposition}[theorem]{Tvrzení}
+\newtheorem{definition}[theorem]{Definice}
+\newtheorem{remark}[theorem]{Poznámka}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Důsledek}
+\newtheorem{exercise}[theorem]{Cvičení}
+
+%\numberwithin{equation}{document}
+%
+\def\div{{\rm div}}
+\def\Lapl{\Delta}
+\def\grad{\nabla}
+\def\supp{{\rm supp}}
+\def\dist{{\rm dist}}
+%\def\chset{\mathbbm{1}}
+\def\chset{1}
+%
+\def\Tr{{\rm Tr}}
+\def\to{\rightarrow}
+\def\weakto{\rightharpoonup}
+\def\imbed{\hookrightarrow}
+\def\cimbed{\subset\subset}
+\def\range{{\mathcal R}}
+\def\leprox{\lesssim}
+\def\argdot{{\hspace{0.18em}\cdot\hspace{0.18em}}}
+\def\Distr{{\mathcal D}}
+\def\calK{{\mathcal K}}
+\def\FromTo{|\rightarrow}
+\def\convol{\star}
+\def\impl{\Rightarrow}
+\DeclareMathOperator*{\esslim}{esslim}
+\DeclareMathOperator*{\esssup}{ess\,supp}
+\DeclareMathOperator{\ess}{ess}
+\DeclareMathOperator{\osc}{osc}
+\DeclareMathOperator{\curl}{curl}
+%
+%\def\Ess{{\rm ess}}
+%\def\Exp{{\rm exp}}
+%\def\Implies{\Longrightarrow}
+%\def\Equiv{\Longleftrightarrow}
+% ****************************************** GENERAL MATH NOTATION
+\def\Real{{\rm\bf R}}
+\def\Rd{{{\rm\bf R}^{\rm 3}}}
+\def\RN{{{\rm\bf R}^N}}
+\def\D{{\mathbb D}}
+\def\Nnum{{\mathbb N}}
+\def\Measures{{\mathcal M}}
+\def\d{\,{\rm d}}               % differential
+\def\sdodt{\genfrac{}{}{}{1}{\rm d}{{\rm d}t}}
+\def\dodt{\genfrac{}{}{}{}{\rm d}{{\rm d}t}}
+\def\dx{\d x}
+\def\Lin{\mathit{Lin}}
+%
+\def\vc#1{\mathbf{\boldsymbol{#1}}}     % vector
+\def\tn#1{{\mathbb{#1}}}    % tensor
+\def\abs#1{\lvert#1\rvert}
+\def\Abs#1{\bigl\lvert#1\bigr\rvert}
+\def\bigabs#1{\bigl\lvert#1\bigr\rvert}
+\def\Bigabs#1{\Big\lvert#1\Big\rvert}
+\def\ABS#1{\left\lvert#1\right\rvert}
+\def\norm#1{\bigl\Vert#1\bigr\Vert} %norm
+\def\close#1{\overline{#1}}
+\def\inter#1{#1^\circ}
+\def\eqdef{\mathrel{\mathop:}=}     % defining equivalence
+\def\where{\,|\,}                    % "where" separator in set's defs
+\def\timeD#1{\dot{\overline{{#1}}}}
+%
+% ******************************************* USEFULL MACROS
+\def\RomanEnum{\renewcommand{\labelenumi}{\rm (\roman{enumi})}}   % enumerate by roman numbers
+\def\rf#1{(\ref{#1})}                                             % ref. shortcut
+\def\prtl{\partial}                                        % partial deriv.
+\def\Names#1{{\scshape #1}}
+\def\rem#1{{\parskip=0cm\par!! {\sl\small #1} !!}}
+\def\reseni#1{\par{\bf Řešení:}#1}
+%
+%
+% ******************************************* DOCUMENT NOTATIONS
+% document specific
+%***************************************************************************
+%
+\addtolength{\textwidth}{5cm}
+\addtolength{\textheight}{4cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\hoffset}{-2.5cm}
+\begin{document}
+\parskip=2ex
+\parindent=0pt
+\pagestyle{empty}
+ \section*{Zadání příkladů pro semestrální práci 2019}
+
+ Cílem seminární práce je aplikace teoretických znalostí z přednášky na konkrétní úlohy.
+ Podstatu algoritmu totiž člověk nejlépe pochopí až pokud jej sám implementuje, nebo modifikuje při řešení konkrétního problému.
+ 
+ \section{Termíny}
+ \begin{itemize}
+  \item {\bf 8.3.} končí možnost odevzdání podle loňského zadání pro opakující
+  \item {\bf 12.3.} zveřejnění zadání pro 2019
+  \item {\bf 9. 4.} server \verb'https://flowdb.nti.tul.cz/secure' aktualizován pro nové zadání
+  \item do {\bf 23.4.} zaslání rozboru úlohy (textová část)
+  \item do {\bf 24.5.} odevzdání první funkční verze programu
+ \end{itemize}
+
+ \section{Pravidla pro vypracování práce}
+
+  \begin{itemize}
+  \item   Studenti vytvoří řešitelské týmy po jednom nebo dvou lidech. Každý tým vypracuje řešení jedné úlohy dle vlastního výběru. Týmy nechť mi mailem nahlásí své složení a úlohu, kterou chtějí řešit.  Aktuální stav budu průběžně zveřejňovat na adrese:
+ 
+ \url{https://docs.google.com/spreadsheets/d/17Zw4NxqiF--IbPwC9d_FMQeccwS9oCbKWx75qsR_z4o/edit?usp=sharing}
+ 
+ Jednu úlohu může řešit maximálně 10 lidí v týmech celkem.
+
+  \item Týmy vypracují textový rozbor problému. V rozboru formulujte úloha  pomocí grafu (co jsou vrcholy, co hrany, ohodnocení a pod.)
+  a popište použití vhodného grafového algoritmu pro danou úlohu. Dále popište jaké datové struktury použijete. 
+  Určete časovou a paměťovou složitost použitého algoritmu v nejhorším případě. 
+  Textovou část ve formátu PDF mi zašlete na e-mail: jan.brezina@tul.cz 
+         
+
+  \item  Týmy implementují vybraný algoritmus. Pro implementaci můžete použít jeden z jazyků: C, C++, C\#, Java, Python, Pascal (viz. server)
+   Program by měl být strukturovaný s výstižnými jmény identifikátorů, s okomentovanými funkcemi a hlavními datovými strukturami. 
+   Program má skutečně mít časovou a paměťovou složitost uvedenou v textovém rozboru. Program čte vstup ze standardního vstupu a zapisuje výstup na standardní výstup.
+  
+  \item  Tým otestuje implementaci na testovacím serveru. Webové rozhraní váš program přeloží, 
+        spustí na testovací sadě vstupů a porovná s referenčními výsledky. Informujte mě e-mailem o úspěšném odevzdání nebo nezvladatelných problémech 
+        s odevzdáním. Každý kód dále kontroluji osobně a e-mailem potvrdím jeho přijetí, nebo případné výhrady.  
+
+  \item  Předchozí body plní tým jako celek, nicméně každý člen týmu musí rozumět jak teoretické části, tak programu a práce mu bude
+         uznána, pokud v rámci zkoušky dokáže zodpovědět dotazy ohledně práce.
+ \end{itemize}
+
+\section{Zadání úloh}
+
+
+\subsection{Přelévání nádob \hfill{\tt MINSPILL}}
+ Máte k dispozici $n$ nádob s celočíselnými kladnými objemy $v_i<100$, $i\in 1,\dots n$ v litrech. 
+ Největší nádoba o objemu $V$ je plná a cílem je odměřit daný počet litrů $w\le V$ v co nejkratším čase, přičemž přelévání probíhá vždy rychlostí $1$ litr za sekundu. Chceme získat postup optimálního přelévání pro všechny možné cílové objemy $w \le V$.
+ Jedno přelití končí buď plnou cílovou nádobou nebo prázdnou vylévanou nádobou a nedochází ke ztrátám. 
+
+ Formulujte problém jako grafovou úlohu. Co budou vrcholy, co hrany?  O jaký typ grafu se jedná?
+ Navrhněte vhodné datové struktury umožňující běh Dijkstrova algortimu pro graf, který není dán na vstupu, ale vzniká dynamicky.
+ Napište program používající vhodnou implementaci Dijkstrova algoritmu pro nalezení optimálních přelévacích postupů. 
+ Pokuste se určit složitost vaší implementace v nejhorším případě: 
+ \begin{enumerate}
+  \item vzhledem k počtu vrcholů grafu 
+  \item vzhledem k počtu nádob.
+ \end{enumerate}
+
+
+ Vstup je textový soubor, kde na prvním řádku je počet nádob, na dalších $n$ řádcích jsou objemy nádob.
+ Na výstupu bude $V$ řádků. Na jednom výstupním řádku je postupně: cílový objem $w$, doba přelití (počet přelitých litrů) a počet přelití. Pokud objem $w$ nelze naměřit, vypíše se pouze $w$ následované koncem řádku.
+ 
+Příklad vstupu:
+\begin{verbatim}
+3
+2
+4
+6
+\end{verbatim}
+
+Očekávaný výstup:
+\begin{verbatim}
+1
+2 2 1
+3
+4 2 1
+5
+6 0 0
+\end{verbatim}
+
+
+\subsection{Web stránky \hfill{\tt kód: WEBISL}}
+Danou množinu webových stránek chceme rozdělit na co největší disjunktní podmnožiny $1,\dots, k$ tak,
+ že v každé podmnožině se lze proklikat z libovolné stránky na libovolnou jinou. 
+
+Formulujte problém jako grafovou úlohu. Co budou vrcholy, co hrany?  O jaký typ grafu se jedná? Navrhněte vhodný
+algoritmus a určete složitost vaší implementace vzhledem k počtu stránek.
+
+Vstup je textový soubor, kde na prvním řádku je počet stránek $n$ a počet odkazů $m$, na dalších $m$ řádcích jsou jednotlivé odkazy jako dvojce
+index stránky, ze které odkaz odchází, a index stránky, na kterou vede.
+Výstup má  $n$ řádek, na řádce $i$ je číslo komponenty, ke které patří stránka $i$. Číslo komponenty je minimální index stránky v komponentě.
+
+Příklad vstupu:
+\begin{verbatim}
+3 3
+1 2
+2 1
+1 2
+\end{verbatim}
+
+Očekávaný výstup:
+\begin{verbatim}
+0
+1
+1
+\end{verbatim}
+
+
+\subsection{Železnice \hfill{\tt kód: BIGLOKO1}}
+Železniční společnost VELKÁ MAŠINA plánuje propojit železnicí $n$ měst, mezi nimiž zatím nikde železnice nevede. Byla vypracována studie, ve které bylo ohodnocena
+výstavba železnice mezi některými dvojicemi měst. Pro některé dvojice měst bylo vypracováno více variant, celkem bylo uvažováno 
+$m$ variant spojení mezi dvojicí některých měst. 
+Studie také určila míru zátěže životního prostředí a obyvatelstva pro každou variantu a to stupni 1-5. 
+Společnost VELKÁ MAŠINA potřebuje program, který pro zadané výsledky studie navrhne železniční síť, která propojí všechna města
+a zároveň bude mít nejmenší zátěž životního prostředí. V případě více takových síťí bude vybrána síť nejlevnější.
+Formulujte úlohu jako grafový problém hledání minimální kostry a navrhněte a implementujte algoritmus pro jeho řešení s časovou složitostí $O(m \log n)$ nebo lepší.
+
+Vstupem je textový soubor, kde na prvním řádku jsou čísla $n$ a $m$. Na dalších $m$ řádcích jsou vždy data jedné varianty, tj. čtyři čísla. 
+První dvě udávají indexy koncových měst úseku, tady jsou to čísla z množiny $\{0,\dots,n-1\}$, další číslo udává cenu vybudování úseku (v miliónech korun) 
+opět celé číslo a poslední číslo udává míru zátěže životního prostředí z množiny ${1,2,3,4,5}$, pět je nejhorší. 
+
+Na výstupu bude $n-1$ řádků s indexy variant železničních úseků (číslovaných od $0$ do $m-1$) použitých výslednou síť. Jejich pořadí je dáno následovně:
+uvažujte výslednou kostru jako zakořeněný strom v městě $0$. Pro každé další město $j$ existuje jediný předek $k$. Na pozici $j-1$ v seznamu bude index $0$ až $m-1$ 
+varianty použité pro spojení z $j$ do předka $k$. 
+
+
+Příklad vstupu:
+\begin{verbatim}
+4 7
+0 1 20  5
+0 1 40  2
+1 2 5   3
+1 3 11  2
+1 3 20  1
+0 2 42  2 
+2 3 30  4
+\end{verbatim}
+
+
+Očekávaný výstup:
+\begin{verbatim}
+1
+5
+4
+\end{verbatim}
+
+
+\subsection{Rozvrh \hfill{\tt kód: SCHED}}
+Řešte zjednodušený problém sestavování rozvrhu. Jsou dány:
+\begin{itemize}
+ \item množina studentů $S=\{0,\dots, n_S - 1\}$, 
+ \item množina předmětů $P=\{0,\dots, n_P - 1\}$,
+ \item množina učitelů  $U=\{0,\dots, n_U - 1\}$, 
+ \item množina výukových bloků $B=\{0,\dots, n_B - 1\}$. 
+\end{itemize}
+Každý student $i\in S$ má definovánu množinu zapsaných předmětů $p_i \subset P$. 
+Každý předmět $j\in P$ má definovaného učitele $u_j \in U$. Předpokládáme neomezenou zásobu učeben.
+Cílem je přiřadit předmětům vyučovací bloky tak, aby předměty které mají průnik studentů nebo učitelů
+neměly stejný blok.
+Úkoly:
+\begin{enumerate} 
+ \item Formulujte úlohu jako problém barvení grafu. Co jsou vrcholy, hrany, barvy?
+ \item Vyberte si jeden z heuristických barvících algoritmů a popište jeho průběh při aplikaci na tento konkrétní problém.
+ \item Zvojený algoritmus implementujte.
+\end{enumerate}
+
+Vstupem je textový soubor. Na prvním řádku jsou čísla $n_S$, $n_P$, $n_U$, $n_B$.
+Na dalších $n_S$ řádcích je pro každého studenta $i$ seznam čísel jeho předmětů $p_i$. 
+Na dalších $n_P$ řádcích je pro každý předmět $j$ číslo jeho učitele $u_j$.
+Výstup programu má $n_P$ řádků na řádku $j$ je pro předmět $j$ číslo jeho bloku. 
+Bloky jsou očíslovány tak, aby při ponechání pouze řádků s prvním výskytem bloku
+tvořily uspořádanou posloupnost.
+
+Příklad vstupu:
+\begin{verbatim}
+6 6 3 3
+0 1 3
+0 1 5
+0 4 3
+0 4 5
+2 1 3
+2 4 5
+0
+0
+1
+1
+2
+2
+\end{verbatim}
+
+Očekávaný výstup:
+\begin{verbatim}
+0
+1
+0
+2
+1
+2
+\end{verbatim}
+
+
+
+
+\subsection{Segmentace \hfill{\tt kód: SEGMENT}}
+Pro daný obrázek $n\times n$ pixelů ve stupních šedi $0 \dots 255$ je třeba odlišit pixely vyobrazeného objektu $O$ od 
+kontrastního pozadí $B$ (problém segmentace obrazu). Přitom není známo zda jde o tmavý objekt na světlém pozadí nebo naopak,
+ani není znám nějaký odstup intenzit objektu a pozadí. Předpokládáme však, že maximální rozdíl intenzit sousední pixelů $a$ a $b$ 
+v rámci objektu ( $a, b \in O$) i v rámci pozadí ($a,b \in B$) je alespoň o $2$ stupně šedi menší než minimální rozdíl intenzit 
+sousedních pixelů z nichž jeden je z objektu a druhý z pozadí $(a\in O,\ b\in B)$. Předpokládáme, že po obvodu obrázku 
+jsou pouze pixely patřící k pozadí a detekovaný objekt nemá díry.
+
+Navrhněte a popište algoritmus založený na hledání minimální kostry, kde ohodnocení hran je dáno rozdílem 
+intenzit sousedících pixelů. Formulujte problém jako grafovou úlohu. Co budou vrcholy, co hrany?  
+Určete složitost vaší implementace  vzhledem k počtu pixelů obrázku.
+
+Vstup je textový soubor, kde na prvním řádku je velikost obrázku $n$ a na dalších $n$ řádcích je vždy $n$ čísel udavajících intenzity
+v obrázku. Intenzity jsou čísla od 0 do 255. Výstup je ve stejném formátu jako vstup, jen místo intenzit je 
+uvedena $0$ pro pixel pozadí a $1$ pro pixel objektu.
+
+Příklad vstupu:
+\begin{verbatim}
+5
+0 0 1 0 0
+0 1 4 5 0
+0 5 5 6 1
+0 6 6 3 2
+1 0 1 2 2 
+\end{verbatim}
+
+Očekávaný výstup:
+\begin{verbatim}
+0 0 0 0 0
+0 0 1 1 0
+0 1 1 1 0
+0 1 1 0 0
+0 0 0 0 0 
+\end{verbatim}
+
+
+%P-rozšíření: Jak by bylo možno segmentovat obraz na $N>2$ segmentů při zadaném minimální odstupu intenzit na hranicích segmentů? Implementujte tuto funkcionalitu.
+
+%P-rozšíření:
+%Jak by bylo možné segmentovat rozostřené obrázky, kde není ostrý skok intenzit na hranici segmenů, ale jen prudký gradient? (Zkuste vhodným způsobem přidat hrany do více okolních pixelů.)
+%Implementujte tuto funkcionalitu.
+
+%P-rozšíření:
+%Analyzujte vhodnost použití Kruskalova a Borůvkova algoritmu v této konkrétní úloze, pokuste se přesněji odhadnout čas výpočtu a paměťovou náročnost.
+%Své závěry ověřte praktickým porovnáním implementace pomocí Kruskalova a Borůvkova algoritmu.
+
+
+\subsection{Dodávky elektřiny \hfill{\tt kód: DELIVERY}}
+Model elektrické rozvodné sítě je tvořen elektrárnami $0$, \dots $n_e-1$, koncovými přípojkami $n_e$, \dots, $n_e+n_s-1$ a rozvodnami $n_e+n_s$, \dots, $n_e+n_s+n_r-1$. Tyto objekty jsou propojeny sítí elektrických vodičů $n_v$. Jeden vodič vždy spojuje právě dva objekty a má definovaný maximální výkon, který jím může být přenášen (v obou směrech stejný). Žádné dvě elektrárny nejsou přímo propojeny a pro každou je znám její výkon. Za účelem výstavby nového výrobního závodu bylo vytipováno $N$ míst, každé s několika nezávislými elektrickými přípojkami. 
+Popište a implementujte algoritmus, který pro každou lokalitu určí maximální dostupný elektrický příkon.
+
+{\bf Popis vstupu: }
+Na prvním řádku vstupu jsou čtyři přirozená čísla udávající: počet elektráren $n_e$, počet koncových přípojek $n_s$, počet rozvoden $n_r$  a počet vodičů $n_v$. Na dalších $n_e$ řádcích jsou výkony elekráren. Na dalších $n_v$ řádcích je specifikace vodičů. Na jednom řádku jsou tři přirozená čísla udávající postupně: index prvního, index druhého propojeného objektu a maximální přenášený výkon.
+Výkony elektráren a kapacity vodičů jsou přirozená čísla menší než 1000.
+Následuje počet lokalit $N$ na semostatném řádku. Na každém z následujících $N$ řádcích je seznam koncových přípojek jedné lokality (maximálně 3).
+Na výstupu programu bude $N$ řádků, na každém maximální dostupný výkon pro odpovídající lokalitu.
+
+
+Formulujte úlohu grafově jako úlohu pro tak, aby šla pro jednu lokalitu řešit jako problém sítě s jedním zdrojem a jedním cílem. Napište program pro nalezení optimálního toku sítí. Použijte BFS pro hledání zlepšující cesty, nebo algoritmus s lepší složitostí.
+
+
+Příklad vstupu:
+\begin{verbatim}
+2 2 1 4
+4
+4
+0 4 6
+1 4 5
+4 2 4
+4 3 7
+3
+2
+3
+2 3
+\end{verbatim}
+
+Očekávaný výstup:
+\begin{verbatim}
+4
+7
+8
+\end{verbatim}
+
+
+
+\end{document}
+
+\subsection{Nejspolehlivější cesta \hfill{\tt kód: RELCONN}}
+% aplikujeme -log( p ) a hledáme nejkratší cestu
+Máme rozlehlou počítačovou síť, která je realizována
+rádiovým spojením. Rádiové spojení může být nejrůznějším způsobem rušeno a tudíž
+není moc spolehlivé. 
+Síť tvoří uzly a jejich rádiová spojení. Uzly jsou očíslované $0$ až $n-1$ a jedno spojení je 
+dáno: číslem $i$ vysílajícího uzlu, číslem $j$ přijímajícího uzlu a pravděpodobností $0<p_{i,j}<1$ přijmutí správného paketu.
+Spojení mezi dvěma uzly sítě je vždy symetrické. 
+Najděte v zadané síti nejspolehlivější cestu z vrcholu $s$ do vrcholu $t$. Nejspolehlivější
+cesta je ta s nejmenší pravděpodobností chyby.
+
+Na prvním řádku vstupu je počet uzlů $n$ a celkový počet spojení mezi nimi, $m$.
+Na dalších $m$ řádkcích je pro každé spojení číslo vysílajícího uzlu, číslo  přijímajícího uzlu (číslováno od 0) a pravděpodobnost $p$ (např. 0.8931).
+Na řádku $m+2$ je počet testovacích dotazů $N$ a na dalších $N$ řádcích jsou data pro jednotlivé dotazy. 
+Jeden dotaz je dvojice uzlů, mezi kterými chceme najít cestu, první je index počátečního a druhý index koncového uzlu.
+
+Na výstupu bude $N$ řádků, pro každý dotaz jeden. 
+Výsledek jednoho dotazu je posloupnost indexů uzlů podél nalezené nejspolehlivější cesty včetně počátečního a koncového ze zadání dotazu.
+V případě, že žádná cesta (byť s minimální spolehlivostí) pro dotaz neexistuje, vypíše se pouze index počátečního uzlu ze zadání dotazu.
+
+Příklad vstupu:
+\begin{verbatim}
+3 3
+0 1 0.8
+0 2 0.5
+1 2 0.7
+1
+0 2
+\end{verbatim}
+
+Očekávaný výstup:
+\begin{verbatim}
+0 1 2
+\end{verbatim}
+
+
+ 
+
+\subsection{Sudoku \hfill{\tt kód: SUDOGOB}}
+Ve vaší knize se Sudoku problémy řádil šotek, přidal nebo vymazal některá čísla ze zadání. Máte napsat program, který zjistí kolik 
+řešení pro dané zadání existuje a pokud existuje právě jedno, tak ho vypíše.
+
+Problém řešení sudoku formulujte jako grafovou úlohu (barvení grafu). Navrhněte a implementujte algoritmus, který pro zadané sudoku 9x9 nalezne 
+jeho řešení. Použijte některý aproximativní algoritmus a doplňte ho o backtracking v případě, že by aproximativní řešení vyžadovalo více než 
+9 barev.
+
+Na prvním řádku vstupu je počet zadání $N$ k testování. Následuje $N$ tabulek oddělených prázdným řádkem. Jedna tabulka je $9$ řádků po devíti cifrách oddělených mezerou. 
+Cifra $0$ označuje prázné pole. Výstupem je pro každou vstupní tabulku počet řešení, pokud má úloha jediné řešení, pak po počtu řešení následuje 
+výpis unikátního řešení ve stejném formátu jako je vstup. Pokud úloha nemá řešení vypíše se počet řešení 0. 
+
+\pagebreak
+Příklad vstupu:
+\begin{verbatim}
+3
+3 0 6 0 0 2 5 0 0
+0 0 0 0 3 8 0 0 0
+7 0 8 0 1 6 0 9 0
+0 0 7 0 0 3 8 6 0
+8 2 0 0 7 0 0 4 5
+0 6 3 1 0 0 9 0 0
+0 7 0 3 5 0 6 0 2
+0 0 0 8 2 0 0 0 0
+0 0 2 9 0 0 7 0 4
+
+3 0 6 0 0 2 5 0 3
+0 0 0 0 3 8 0 0 0
+7 0 8 0 1 6 0 9 0
+0 0 7 0 0 3 8 6 0
+8 2 0 0 7 0 0 4 5
+0 6 3 1 0 0 9 0 0
+0 7 0 3 5 0 6 0 2
+0 0 0 8 2 0 0 0 0
+0 0 2 9 0 0 7 0 4
+
+3 0 6 0 0 2 0 0 0
+0 0 0 0 3 8 0 0 0
+7 0 8 0 1 6 0 9 0
+0 0 7 0 0 3 8 6 0
+8 2 0 0 7 0 0 4 5
+0 6 3 1 0 0 9 0 0
+0 7 0 3 5 0 6 0 2
+0 0 0 8 2 0 0 0 0
+0 0 2 9 0 0 7 0 4
+\end{verbatim}
+
+Výstup:
+\begin{verbatim}
+1
+3 1 6 4 9 2 5 7 8 
+2 9 5 7 3 8 4 1 6 
+7 4 8 5 1 6 2 9 3 
+9 5 7 2 4 3 8 6 1 
+8 2 1 6 7 9 3 4 5 
+4 6 3 1 8 5 9 2 7 
+1 7 9 3 5 4 6 8 2 
+6 3 4 8 2 7 1 5 9 
+5 8 2 9 6 1 7 3 4 
+0
+2
+\end{verbatim}
+
+
+
+
+
+% Firmy si dluzi ruzne castky, urcete mnoziny firem. Firma X zproztredkovane dluzi firme Y pokud ...
+% najdete mnoziny firem, ktere si vsechny navzajem zprostredkovane dluzi. 
+%
+% komplikace: redukce hran podle castky
+% zprostredkovane dluhy podle castky
+% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Plánovač pro Google Street View \hfill{\tt kód: GOSTRVI}}
+Při pořizování dat pro službu Google  Street View, projíždí snímkovací vozidlo všechny ulice města. 
+Město, které má vozidlo zmapovat je dáno očíslovanými křižovatkami $1\dots n$ a $m$ ulicemi. 
+Jedna ulice je dána dvojicí křižovatek, které spojuje a  informací o jednosměrnosti.
+
+Navrhněte a implementujte algoritmus, který:
+\begin{enumerate}
+\item Určí zda je město možné projet tak, aby se každá ulice projela právě jednou a vozidlo se vrátilo na místo startu. Jednosměrné ulice je třeba projet 
+      ve správném směru.
+\item Pokud platí podmínka 1), program nalezne optimální trasu.
+\end{enumerate}
+Návod: po určení vstupních a výstupních stupňů vrcholů je třeba určit orientaci neorientovaných hran tak, aby existovala Eulerovská kružnice. To lze například formulavat jako problém toku sítí 
+z vrcholů s nedostatkem odchozích hran do vrcholů s přebytkem odchozích hran. Kapacity sítě jsou jednotkové. Po nalezení toku sítí budou dříve nevybalancované vrcholy vybalancované, ale mohou se objevit
+nové nevybalancované vrcholy. Hledání toku je potřeba opakovat (na různých sítích) tak dlouho dokud nejsou všechny hrany zorientované, nebo nezjistíme, že je nelze zorientovat tak, aby byly všechny vrcholy vyvážené 
+(v síti neexistuje tok).
+
+Vstup je textový soubor, kde na prvním řádku jsou dvě čísla $n$ - počet křižovatek a $m$ - počet zadání ulic. 
+Na dalších $m$ řádcích jsou zadány jednotlivé ulice. Jednosměrky jsou zadány dvojicí křižovatek: $i$ - počáteční křižovatka, $j$ - koncová křižovatka. 
+Obousměrné ulice jsou zadány na dvou po sobě jdoucích řádcích jako dvě jednosměrné opačně orientované ulice.
+Výstup je posloupnost křižovatek v navržené trase. Výstup má $k+1$ řádek, kde $k$ je počet všech ulic (jednosměrek i obousměrných) ve městě. 
+První i poslední křižovatka na výstupu má index 0. Pokud existuje více Eulerovských kružnic, vypište tu která je první v lexikografickém uspořádání 
+(křižovaky s nízkými indexy se projíždějí co nejdříve). Prázdný výstup v případě, že Eulerovská kružnice neexistuje.
+
+\subsection{Inspekce vozovky \hfill{\tt kód: STREET_INSPECT}}
+Pro monitorování vad na povrchu vozovky bylo vyvinuto vozidlo, které je schopno automaticky snímat a analyzovat jeden jízdní pruh.
+Vaším cílem je napsat program, který pro danou silniční síť nalezne trasu inspekční vozidlo. 
+Silniční síť je dána počtem křižovatek N a počtem silnic M, každá silnice je určena:
+indexy dvou křižovatek A, B,  které spojuje a počtem pruhů pro směry A>B a B>A.
+
+TODO: Upřesnit zadání tak aby pokud to lze nalezla se Eulerova kružnice. Pro testování nutno přijmout nejednoznačná řešení, tj. volat kontrolní program místo 
+referenčních dat.
+
+Při pořizování dat pro službu Google  Street View, projíždí snímkovací vozidlo všechny ulice města. 
+Město, které má vozidlo zmapovat je dáno očíslovanými křižovatkami $1\dots n$ a $m$ ulicemi. 
+Jedna ulice je dána dvojicí křižovatek, které spojuje a  informací o jednosměrnosti.
+
+Navrhněte a implementujte algoritmus, který:
+\begin{enumerate}
+\item Určí zda je město možné projet tak, aby se každá ulice projela právě jednou a vozidlo se vrátilo na místo startu. Jednosměrné ulice je třeba projet 
+      ve správném směru.
+\item Pokud platí podmínka 1), program nalezne optimální trasu.
+\end{enumerate}
+Návod: po určení vstupních a výstupních stupňů vrcholů je třeba určit orientaci neorientovaných hran tak, aby existovala Eulerovská kružnice. To lze například formulavat jako problém toku sítí 
+z vrcholů s nedostatkem odchozích hran do vrcholů s přebytkem odchozích hran. Kapacity sítě jsou jednotkové. Po nalezení toku sítí budou dříve nevybalancované vrcholy vybalancované, ale mohou se objevit
+nové nevybalancované vrcholy. Hledání toku je potřeba opakovat (na různých sítích) tak dlouho dokud nejsou všechny hrany zorientované, nebo nezjistíme, že je nelze zorientovat tak, aby byly všechny vrcholy vyvážené 
+(v síti neexistuje tok).
+
+Vstup je textový soubor, kde na prvním řádku jsou dvě čísla $n$ - počet křižovatek a $m$ - počet zadání ulic. 
+Na dalších $m$ řádcích jsou zadány jednotlivé ulice. Jednosměrky jsou zadány dvojicí křižovatek: $i$ - počáteční křižovatka, $j$ - koncová křižovatka. 
+Obousměrné ulice jsou zadány na dvou po sobě jdoucích řádcích jako dvě jednosměrné opačně orientované ulice.
+Výstup je posloupnost křižovatek v navržené trase. Výstup má $k+1$ řádek, kde $k$ je počet všech ulic (jednosměrek i obousměrných) ve městě. 
+První i poslední křižovatka na výstupu má index 0. Pokud existuje více Eulerovských kružnic, vypište tu která je první v lexikografickém uspořádání 
+(křižovaky s nízkými indexy se projíždějí co nejdříve). Prázdný výstup v případě, že Eulerovská kružnice neexistuje.
+
+
+
+
+\subsection{Tube Challenge (P)}
+Uvažujte stejný systém MHD jako v předchozí úloze a navrhněte a implementujte efektivní algoritmus pro nalezení nejrychlejší cesty
+po všech stanicích  (viz. \url{http://en.wikipedia.org/wiki/Tube_Challenge})
+
+Na prvním řádku vstupu je počet stanic $n$ a  počet spojů $m$
+Na dalších $m$ řádkcích je pro každý spoj startovní a cílová stanice, čas odjezdu a 
+doba cesty. Na výstupu bude pro každý použitý spoj jeden řádek obsahující: dobu čekání, čas odjezdu, startovní stanici, čas odjezdu a cílovou stanici
+
+\subsection{Optimalizace robotů (P)}
+Robot má provést $n$ operací (například vrtání) na $n$ různých místech výrobku (plošného spoje). Pro každou dvojici míst je známo, jak dlouho 
+robotu trvá se mezi nimi přemístit, přitom cesta v opačných směrech může obecně trvat různě dlouho. 
+Úkolem je najít optimální plán prováděn operací, aby se minimalizovala doba přemisťování.
+
+Implmentujte vhodný aproximativní algoritmus pro řešení úlohy TSP. Specifikujte konkrétněji typ robota a pro něj stanovte
+rozumné předpoklady o typu grafu a jeho ohodnocení. Existuje praktický připad, kdy by ohodnocení nebylo metrikou?
+
+Vstupem je na prvním řádku číslo $n$ a na dalších $n^2$ řádcích jsou délky jednotlivých hran. Výstupem bude posloupnost vrcholů optimální 
+cesty.
+
+
+
+
+
+\subsection{Sekvencování DNA (Hamilton) (P)}
+Při sekvencování DNA se tato nejprve rozdělí na menší části (300 -- 1000 bazí, každá pozice je obsazena jedním ze čtyř nukleotidů:
+Adenin, Thymin, Guanin, Cytosin) a teprve tyto fragmenty se teprve přímo sekvencují. Výsledkem je velké množství řetězců náhodně vybraných 
+z původní DNA, přičemž předpokládáme, že každé místo DNA je pokryto nějakým řetězcem (v praxi je každé místo pokryto minimálně třikrát).
+Dalším zpracováním získáte pro každý řetězec $i$ seznam řetězců, které za něj lze připojit tak, aby se řetězce překrývali o nějakou minimální délku
+a pro každou dvojici takto navazujících řeťezců $(i, j)$ máte délku maximálního překryvu řetězců 
+(např. dvojice CAAA, AAG má maximální překryv délky 2). Cílem je naleznout posloupnost řeťezců tak, aby délka celkového spojeného 
+řeťezce byla minimální a přitom se použily všechny zadané řetězce.
+ 
+Formulujte úlohu jeko hlednání nejkratší Hamiltonovské cesty v grafu a implementujte některý z aproximativních algoritmů 
+pro řešení tohoto problému. 
+
+
+Vstupem programu bude textový soubor, kde na prvním řádku jsou čísla: $n$ počet řetězců, $m$ počet překryvů. Na dalších $m$ řádcích budou zadány jednotlivé překryvy:
+$i$ index prvního řetězece, $j$ index druhého řetězce, $k$ pozice řetězce $j$ v řetězci $i$ (počítáno od nuly viz. předchozí příklad).
+Výstupem bude posloupnost indexů řeťezců udávající nalezenou aproximaci optimálního řešení a d
+
+\subsection{Kontaminace vody}
+V jednom království mají nádhernou vodní zahradu spousta nádržek a rybníčků je propojena potůčky a fontánkami. Král se však obává teroristického útoku a chce vědět 
+co se stane, pokud terorista otráví některou nádrž. Kam otrava dorazí za hodinu? Za jak dlouho otráví celou zahradu? A podobně.
+
+ Systém, ve kterém proudí voda si budeme představovat jako soubor $n$ nádrží s objemy $V_i$, $i=1,\dots n$, které jsou propojeny
+``hadičkami''. Každá hadička $h$ má dánu počáteční a koncovou nádrž a je dáno jakou rychlostí $q_h$ v ní voda proudí (v $m^3/s$). Předpokládáme, že systém je v rovnováze,
+tedy do každé nádrže přitéká tolik kolik odtéká. Terorista nasype $m_I$ gramů jedu do nádrže $I$ v čase $0$. Simulaci šíření jedu si můžeme představit tak,
+že pro každou nádržku určíme čas $t_i$:
+\[
+ t_i=V_i / Q_i,\quad Q_i = \sum_j q_{i,j}
+\]
+za jaký by z nádržky odtekla všechna voda, pokud by žádná nepřitékala ($Q_i$ je celkový odtok z nádržky $i$). Pak pro každou nádržku $i$ provádíme v pravidelných intervalech $t_i$
+převod jedu ze zdrojové nádržky $i$ do cílové nádržky $j$ podle předpisů:
+\[
+    m_j = m_j + \Delta m_{i,j},\quad  \Delta m_{i,j} = q_{i,j} t_i c_i,\quad c_i = m_i/V_i,
+\]
+kde $c_i$ je koncentrace ve zdrojové nádržce a $\Delta m_{i,j}$ je množstí látky převáděné z nádržky $i$ do nádržky $j$. 
+Po tomto převodu pak nastavíme $m_i=0$.
+
+Navrhněte a implementujte algoritmus, který pro všechny nádržky určí za jaký čas se do nich jed dostane a v jakém množství (to je v případě, že krále zajímá kam se kdy jed dostane)
+Implementaci proveďte tak, aby bylo možné ho ukončit v zadaném simulovaném čase $T$ (to je pro případ, kdy krále zajímá kam se jed dostane za jednu hodinu).
+
+Vstupem je textový soubor, kde na prvním řádku je $n$ počet nádrží, $m$ počet hadiček, $I$ nádržka s jedem, $m_I$ množství jedu, $T$ maximální doba simulace.
+Na dalších $n$ řádcích jsou objemy nádržek a na dalších $m$ řádcích jsou jednotlivé hadičky, tedy vždy zdrojová nádržka, cílová nádržka a rychlost proudění.
+
+Výstupem je pro každou nádržku čas kontaminace ( může být i nekonečný pokud tam jed nestihne dorazit do času $T$) a množství jedu v čase první kontaminace.
+
+
+
+
+Při stavění z lega je elementární oprerací spojení dvou dílů, nebo již částečně složených komponent. Máte dán přesný postup
+sestavování cílového výrobku. Každému elementárnímu dílu i každé dílčí komponentě je přiřazeno jedno přirozené číslo. Pracovní 
+postup je poslouponost trojic $(in1\ in2\ out)$, kde první dvě položky jsou vstupní komponenty a třetí je výstupní komponenta.
+Předpokládejme, že každá elementární operace trvá 1s, dále máte k dispozici libovolný počet dobrovolníků pro skládání a 
+předávání komponent je už zahrnuto v čase elementární operace. Vaším úkolem, je určit minimální čas $T$
+potřebný k dokončení výrobku a pro každou operaci určit jak dlouho může maximálně trvat,
+aby se celý výrobek stihnul v minimálním čase.
+
+Formulujte problém jako grafovou úlohu. Co budou vrcholy, co hrany?  Navrhněte vhodný
+algoritmus a určete jeho složitost vzhledem k počtu elementárních operací.
+
+Implementujte algoritmus v jednom z jazyků: Pascal, C/C++, Java, Fortran.
+Vstup je textový soubor, kde na prvním řádku je počet elementárních operací $n$, na dalších $n$ řádcích jsou
+uspořádané trojice specifikující dvě vstupní a jednu výstupní komponentu. Na výstupu je $n$ čísel na $n$ řádcích
+udávajících maximální dobu tvání pro každou operaci ve stejném pořadí jako na vstupu. Na řádku $n+1$ je minimální 
+čas $T$.
+
+
+\subsection{Robotický systém (SSK)}
+Robotický systém má pracovní stavy $1,\dots, n$. Mezi stavy může přecházet pomocí svých motorických funkcí jako jsou
+pohyby ramen, výměny nástrojů, přemisťování tekutin a pod. Přechody nejsou symetrické, tj. pokud lze přechod realizovat oběma směry, je třeba testovat každý směr zvlášť.
+V rámci vývoje je třeba každý možný přechod otestovat předepsaným 
+počtem provedení přechodu. Vývojový tým má k dispozici modul, který realizuje testování tak, že počítá počty realizovaných přechodů 
+a z aktuálního stavu vždy provede přechod, pro který je rozdíl mezi požadovaným a realizovaným počtem přechodů největší. Modul ukončí testování, pokud
+jsou pro všechny přechody dosaženy požadované počty opakování. 
+
+\begin{itemize}
+ \item Nalezněte příklad stavů, přechodů a požadovaných opakování jednotlivých přechodů tak, aby se testovací modul zacyklil.
+ \item Nalzenout SSK a topologicky setřídit.... 
+\end{itemize}
+TODO: Upravit zadání. Prakticky použitelný robot musí mít graf přechodů DAG. Možná něco jako ekologický systém, kde mohou být jak cyklické závislosti, 
+tak jednosměrné. Otázka je co by přesně měl graf reprezentovat a co by mělo být úkolem. 
+
+
+\subsection{Robotický systém (Eulerův tah)}
+Robotický systém má pracovní stavy $1,\dots, n$. Mezi stavy může přecházet pomocí svých motorických funkcí jako jsou
+pohyby ramen, výměny nástrojů, přemisťování tekutin a pod. V rámci vývoje je třeba každý možný přechod otestovat předepsaným 
+počtem provedení přechodu. Pro testování je třeba navrhnout trasu, která realizuje předepsané počty přechodů a minimalizuje 
+počet nadbytečných přechodů.
+
+Vaším úkolem je navrhnout algoritmus a napsat program, který určí zda je možno navrhnout trasu bez nadbytečných přechodů a
+v takovém případě trasu najde. Určete složitost vaší implementace vzhledem k počtu přechodů. 
+
+Zkuste se zamyslet nad použitelným řešením pro případ, kdy trasa bez nadbytečných přechodů neexistuje. Je tedy potřeba
+minimalizovat nadbytečný počet přechodů za splnění podmínky pro existenci trasy.
+
+Implementujte algoritmus v jednom z jazyků: Pascal, C/C++, Java, Fortran.
+Vstup je textový soubor, kde na prvním řádku jsou dě čísla $n$ - počet stavů systému a $m$ - počet přechodů. 
+Na dalších $m$ řádcích jsou popisy jednotlivých přechodů, tj, tři čísla $i$ - počáteční stav, $j$ - koncový stav, $k$ - předepsaný 
+počet průchodů. Výstup je posloupnost stavů testovací trasy, nebo informace, že neexistuje trasa bez nadbytečných přechodů.
+
+
+
+
+
+Při stavění z lega je elementární oprerací spojení dvou dílů, nebo již částečně složených komponent. Máte dán přesný postup
+sestavování cílového výrobku. Každému elementárnímu dílu i každé dílčí komponentě je přiřazeno jedno přirozené číslo. Pracovní 
+postup je poslouponost trojic $(in1\ in2\ out)$, kde první dvě položky jsou vstupní komponenty a třetí je výstupní komponenta.
+Předpokládejme, že každá elementární operace trvá 1s, dále máte k dispozici libovolný počet dobrovolníků pro skládání a 
+předávání komponent je už zahrnuto v čase elementární operace. Vaším úkolem, je určit minimální čas $T$
+potřebný k dokončení výrobku a pro každou operaci určit jak dlouho může maximálně trvat,
+aby se celý výrobek stihnul v minimálním čase.
+
+Formulujte problém jako grafovou úlohu. Co budou vrcholy, co hrany?  Navrhněte vhodný
+algoritmus a určete jeho složitost vzhledem k počtu elementárních operací.
+
+Implementujte algoritmus v jednom z jazyků: Pascal, C/C++, Java, Fortran.
+Vstup je textový soubor, kde na prvním řádku je počet elementárních operací $n$, na dalších $n$ řádcích jsou
+uspořádané trojice specifikující dvě vstupní a jednu výstupní komponentu. Na výstupu je $n$ čísel na $n$ řádcích
+udávajících maximální dobu tvání pro každou operaci ve stejném pořadí jako na vstupu. Na řádku $n+1$ je minimální 
+čas $T$.
+
+
+
+\subsection{Mobilní síť (barvení grafů) (T,P,P)}
+Provozovatel mobilní telefonní sítě má $n$ vysílačů/přijímačů. Potřebuje jim přiřadit operační frekvence tak, 
+aby se navzájem nerušily. Pro jednoduchost uvažujeme vysílače v rovině a s jednotným kruhovým dosahem 5km a minimální vzdáleností vysílačů 8km.
+
+Formulujte problém jako grafovou úlohu. Co budou vrcholy, co hrany?  O jaký druh grafu se jedná. Jaký je optimální počet frekvencí?
+Použijte vhodný aproximativní algoritmus pro přiřezení co nejmenšího počtu frakvencí. 
+
+Vstup je textový soubor, kde na prvním řádku je počet vysílačů $n$ a na dalších $n$ řádcích jsou
+jejich $x, y$ souřadnice v celých kilometrech. Výstup má $n$ řádků a na každém je číslo $1\dots ,k$ přiřazující 
+vysílači příslušnou frekvenci. 
+
+P-rozšíření: Navíc navrhněte a implementujte algoritmus, který bude rozmisťovat vysílače na dané ploše, tak aby pokrývali danou obdelníkovou oblast a 
+co nejméně se rušili.
+
+P-rozšíření: Upravte algortimus tak, aby vždy použil maximálně 5 frekvencí a napište funkci pro ověření rovinnosti grafu.
+
+
+
+\subsection{IDOS \hfill{\tt kód IDOS}}
+Uvažujte jednoduchý systém MHD s $n$ zastávkami a jízdními řády, které se každý den opakují. Jednotlivé spoje jsou dány
+počáteční stanicí, cílovou stanicí, časem odjezdu (v minutách od začátku dne) a dobou cesty v minutách. Navrhněte algoritmus a napište program,
+který pro zadaný čas, stratovní a cílovou stanici nalezne nejrychlejší spojení. Předpokládejte, že žadné spoje ani dotazy na spojení nejdou přes půlnoc.
+
+Na prvním řádku vstupu je počet stanic $n$ a počet spojů $m$.
+Na dalších $m$ řádkcích je pro každý spoj startovní a cílová stanice, čas odjezdu a 
+doba cesty.  Na řádku $m+2$ je počet testovacích dotazů $N$ a na dalších $N$ řádcích jsou data pro jednotlivé dotazy. 
+Jeden dotaz se skládá ze tří čísel: číslo startovní stanice, číslo cílové stanice a čas (v minutách od začátku dne) od kdy se má spojení hledat. 
+
+Na výstupu bude $N$ řádků, pro každý dotaz jeden. Výsledek jednoho dotazu je posloupnost použitých spojů.
+Jeden spoj je dán dvojicí: (číslo stanice, čas odjezdu). Dvojice jsou uzavřeny v závorce a odděleny mezerou. 
+Po použitých spojích následuje ještě jedna dvojice obsahující index cílové stanice a čas příjezdu do ní.
+Pokud pro daný dotaz spojení neexistuje, vypíše se prázdná závorka '()'.
+
+
+Příklad vstupu:
+\begin{verbatim}
+4 6
+0 1 10 30
+0 1 70 30
+0 2 130 10
+1 2 60 30
+1 3 100 60
+3 1 30 20
+2
+0 2 0
+0 3 20 
+\end{verbatim}
+
+Očekávaný výstup:
+\begin{verbatim}
+(0 10) (1 60) (2 90)
+(0 70) (1 100) (3 160) 
+\end{verbatim}
+
+
+
+\subsection{Bludiště \hfill{\tt kód: MINOS}}
+
+Krétský král Mínos plánuje stavět bludiště pro nevlastního krvelačného syna Minotaura. Bludiště má mít pouze jedno patro, bude kutáno v podzemí z jediného vchodu, chodby bludiště
+budou pravoúhlé s celočíselnými délkami. Král chce, aby v bludišti existovala mezi každou dvojicí křižovatek právě jedna cesta.
+Při kopání je však skála různě tvrdá (tvrdost $0$ až $2^{16}$) a stavitel chce aby se dělníci co nejméně nadřeli, přitom tvrdost skály je známá jen na stěnách již 
+vykopaných chodeb. Chceme tedy bludiště, které má celkovou tvrdost vykopané horniny co nejmenší a pokud takových existuje více, 
+chceme aby se při vynášení vykopané horniny urazila co nejmenší vzdélenost (součet vzdáleností všech křižovatek od vstupu).
+
+Napište program na generování bludiště na čtvercové síti $n \times m$ bodů. Chodby mohou vést pouze po hranách čtvercové sítě. 
+Kopání bludiště probíhá vždy pouze po jedné hraně a v okamžiku dosažení jejího koncového vrcholu se ohodnotí tvrdost dosud 
+neohodnocených hran, které z něj vycházejí a to v pořadí (východ-0, západ-1, sever-2, jih-3). Tvrdost $\alpha_i$ se generujte náhodně pomocí
+kongruenčního generátoru:
+\[
+    \alpha_{i+1} =  \alpha_i * 1664525 + 1013904223  \text{ mod } M
+\]
+hodnota $\alpha_0$, která je součástí vstupu, se použije pro ohodnocení první hrany. 
+Hodnota $M$ je $2^{16}$.
+Vstup do bludiště uvažujte vždy v levém horním rohu z levé strany.
+
+Vstupem programu je jeden řádek se třemi celými čisly $n$, $m$, $\alpha_0$.
+Výstupem bude pro každou křižovatku (bod sítě) je kód typu křižovatky. Z jedné křižovatky  existuje nebo neexistuje chodba 
+do každého ze čtyř směrů (východ-0, západ-1, sever-2, jih-3), kód křižovatky je tedy 4-bitové číslo s uvedeným významem jednotlivých bitů. Jedna křižovatka je tedy
+jedna cifra v 16-kové soustavě (např. křižovatka sever, západ jih je reprezentována cifrou $2+4+8=14=E$). 
+Bludiště vypište na $n$ řádků po $m$ znacích.
+
+Příklad vstupu:
+\begin{verbatim}
+3 3 3000
+\end{verbatim}
+
+Výsledné bludiště, zaokrouhlené ceny hran v tisících:
+\begin{verbatim}
+X -  3 - X -  1 - X
+|                  
+56       64       65
+|         
+X - 59 - X - 17 - X
+                  |
+61       58       46
+                  |
+X - 31 - X -  7 - X
+\end{verbatim}
+
+Výstup:
+\begin{verbatim}
+932
+53A
+136
+\end{verbatim}
