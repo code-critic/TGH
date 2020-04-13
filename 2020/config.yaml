@@ -155,7 +155,7 @@
   avail: 2020-09-30 00:00:00
   reference:
     name: sudoku.cpp
-    lang: CPP-11
+    lang: CPP
   tests:
   - id: sudoku_1.s
     timeout: 5
@@ -163,30 +163,6 @@
     timeout: 26
     
     
-# OK, checked: 11.4.2019        
-#- id: SEGMENT
-  #name: Segmentace obrazu
-  #avail: 2020-03-30 00:00:00
-  #reference:
-    #name: segment.py
-    #lang: PY-276
-  #tests:
-  #- id: SEGMENT_1.s
-    #timeout: 0.1
-  #- id: SEGMENT_2.s
-    #timeout: 0.7
-  #- id: SEGMENT_3
-    #size: 16
-    #timeout: 0.1
-  #- id: SEGMENT_4
-    #size: 64
-    #timeout: 0.2
-  #- id: SEGMENT_5
-    #size: 256
-    #timeout: 0.7
-  #- id: SEGMENT_6
-    #size: 1024
-    #timeout: 12
 
 # OK, checked: 11.4.2019            
 - id: DELIVERY
@@ -206,10 +182,10 @@
     timeout: 0.1
   - id: DELIVERY_06
     size: 10
-    timeout: 0.1        # 1.5s
+    timeout: 0.1        # 0.21s
   - id: DELIVERY_07
     size: 30
-    timeout: 0.25       # 2.5s
+    timeout: 0.25       # 0.67s
   - id: DELIVERY_08
     size: 70
     timeout: 1          # 7.5s
@@ -283,6 +259,33 @@
   #- id: VERI_1
     #time: 1
 
+    
+# OK, checked: 11.4.2019        
+#- id: SEGMENT
+  #name: Segmentace obrazu
+  #avail: 2020-03-30 00:00:00
+  #reference:
+    #name: segment.py
+    #lang: PY-276
+  #tests:
+  #- id: SEGMENT_1.s
+    #timeout: 0.1
+  #- id: SEGMENT_2.s
+    #timeout: 0.7
+  #- id: SEGMENT_3
+    #size: 16
+    #timeout: 0.1
+  #- id: SEGMENT_4
+    #size: 64
+    #timeout: 0.2
+  #- id: SEGMENT_5
+    #size: 256
+    #timeout: 0.7
+  #- id: SEGMENT_6
+    #size: 1024
+    #timeout: 12
+
+    
 ##MINOS:
   ##id: MINOS
   ##name: Bludiste
