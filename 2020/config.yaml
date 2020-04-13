@@ -4,7 +4,7 @@
 - id: MINSPILL
   name: Přelévání nádob
   avail: 2020-09-30 00:00:00
-  timeout:  90
+  timeout:  120        # 80s
   reference:
     name: minspill.py
     lang: PY-367
@@ -21,14 +21,14 @@
     timeout: 0.1
         
   - id: MINSPILL_19000.s    
-    timeout: 0.3         # 0.5s
+    timeout: 0.3         # 1s
 
   - id: MINSPILL_49346771.s   
     timeout: 3           # 10s, 200k states  
   - id: MINSPILL_44000.s
-    timeout: 9           # 25s
+    timeout: 9           # 26s
   - id: MINSPILL_440000.s    
-    timeout: 12           # 40s
+    timeout: 12           # 42s
 
 #  - id: MINSPILL_1e6.s         # reach global timeout in docker
 #    timeout: 26         # 27s
@@ -38,27 +38,28 @@
 - id: IDOS
   name: IDOS
   avail: 2020-09-30 00:00:00
+  timeout:  30        # 80s
   reference:
     name: idos.py
     lang: PY-367
   tests:
   - id: idos_3.s          
-    timeout: 0.1          # 0.070 s
+    timeout: 0.1          # 0.12 s
   - id: idos_5.s
-    timeout: 0.1          # 0.070 s
+    timeout: 0.1          # 0.12 s
   
   - id: idos_8.s
-    timeout: 0.1           # 0.1 s
+    timeout: 0.1           # 0.12 s
   - id: idos_10.s
-    timeout: 0.1           # 0.1 s
+    timeout: 0.1           # 0.17 s
   - id: idos_20.s
-    timeout: 0.1           # 0.1 s
+    timeout: 0.1           # 0.17 s
   - id: idos_100.s
-    timeout: 0.2           # 0.1 s
+    timeout: 0.2           # 0.7 s
   - id: idos_200.s
-    timeout: 0.4           # 0.1 s
+    timeout: 0.4           # 1.3 s
   - id: idos_1000.s
-    timeout: 3           # 0.1 s
+    timeout: 3             # 11 s
 
     
   #- id: idos_10.s
@@ -82,22 +83,23 @@
 - id: BIGLOKO1
   name: Zeleznice
   avail: 2020-09-30 00:00:00
+  timeout:  30        # 12s
   reference:
     name: bigloko.py
     lang: PY-367
   tests:
   - id: BIGLOKO1_1.s
-    timeout: 0.1
+    timeout: 0.1            # 0.11 s
   - id: BIGLOKO1_2.s
-    timeout: 0.1
+    timeout: 0.1            # 0.06 s
   - id: BIGLOKO1_100.s
-    timeout: 0.1
+    timeout: 0.1            # 0.07 s
   - id: BIGLOKO1_1000.s
-    timeout: 0.1
+    timeout: 0.1            # 0.17 s
   - id: BIGLOKO1_10k.s
-    timeout: 0.3
+    timeout: 0.3            # 0.82 s
   - id: BIGLOKO1_100k.s
-    timeout: 3
+    timeout: 3              # 10 s
 
     
 # OK, checked: 13.4.2020        
@@ -111,25 +113,25 @@
   timeout: 70
   tests:
   - id: SCHEDULE_1.s
-    timeout: 0.1
+    timeout: 0.1              # 0.06 s  
   - id: SCHEDULE_2
     size: 100
-    timeout: 0.1
+    timeout: 0.1              # 0.11 s
   - id: SCHEDULE_3
     size: 101
-    timeout: 0.1
+    timeout: 0.1              # 0.12 s
   - id: SCHEDULE_4
     size: 102
-    timeout: 0.1  
+    timeout: 0.1              # 0.12 s
   - id: SCHEDULE_5
     size: 103
-    timeout: 0.1                
+    timeout: 0.1              # 0.12 s
   - id: SCHEDULE_51
     size: 290
-    timeout: 2               
+    timeout: 2                # 6 s
   - id: SCHEDULE_6
     size: 300
-    timeout: 10                 
+    timeout: 12               # 40 s
   #- id: SCHEDULE_7
     #size: 312
     #timeout: 8               
