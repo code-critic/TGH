@@ -165,23 +165,24 @@
   reference:
     name: sudoku.cpp
     lang: CPP
+  timeout: 300      # 50s  ; Not sure how this is interpreted in context of reference and submitted language
   tests:
   
   - id: sudoku_1.s
     # test basic funcionality, easy problems with: 0, 1, 2 solutions
-    timeout: 1
+    timeout: 1      # 0.00s  
   
   - id: sudoku_2.s
     # test hard problems with 1 solution
-    timeout: 10     # 5.3s
+    timeout: 2.3     # 6.8s
   
   - id: sudoku_3.s
     # test hard problems with more solutions (about 1000, fast to find with heuristic)
-    timeout: 16
+    timeout: 4     # 11.3s
     
   - id: sudoku_4.s
     # very hard problem with more solutions (about 60 000, slow to find)
-    timeout: 40
+    timeout: 10     # 29.0s
     
 
 # OK, checked: 13.4.2020            
@@ -193,28 +194,28 @@
     lang: PY-367
   tests:
   - id: DELIVERY_01.s
-    timeout: 0.1
+    timeout: 0.1        # 0.12s
   - id: DELIVERY_02.s
-    timeout: 0.1
+    timeout: 0.1        # 0.12s
   - id: DELIVERY_03.s    
-    timeout: 0.1
+    timeout: 0.1        # 0.07s
   - id: DELIVERY_05.s
-    timeout: 0.1
+    timeout: 0.1        # 0.12s
   - id: DELIVERY_06
     size: 10
     timeout: 0.1        # 0.21s
   - id: DELIVERY_07
     size: 30
-    timeout: 0.2        # 0.67s
+    timeout: 0.2        # 0.57s
   - id: DELIVERY_08
     size: 70
-    timeout: 0.3        # 1s
+    timeout: 0.6        # 1.6s
   - id: DELIVERY_09     
     size: 100
-    timeout: 0.7        # 2s
+    timeout: 0.8        # 2.5s
   - id: DELIVERY_10
     size: 200
-    timeout: 2          # 6s
+    timeout: 3          # 8.0s
 
     
 
