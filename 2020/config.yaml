@@ -157,11 +157,22 @@
     name: sudoku.cpp
     lang: CPP
   tests:
+  
   - id: sudoku_1.s
-    timeout: 5
-  - id: sudoku_hard.s
-    timeout: 26
+    # test basic funcionality, easy problems with: 0, 1, 2 solutions
+    timeout: 1
+  
+  - id: sudoku_2.s
+    # test hard problems with 1 solution
+    timeout: 8     # 5.3s
+  
+  - id: sudoku_3.s
+    # test hard problems with more solutions (about 1000, fast to find with heuristic)
+    timeout: 12
     
+  - id: sudoku_4.s
+    # very hard problem with more solutions (about 60 000, slow to find)
+    timeout: 30
     
 
 # OK, checked: 11.4.2019            
