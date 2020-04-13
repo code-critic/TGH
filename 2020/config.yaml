@@ -174,15 +174,15 @@
   
   - id: sudoku_2.s
     # test hard problems with 1 solution
-    timeout: 2.3     # 6.8s
+    timeout: 10     # 6.8s
   
   - id: sudoku_3.s
     # test hard problems with more solutions (about 1000, fast to find with heuristic)
-    timeout: 4     # 11.3s
+    timeout: 16     # 11.3s
     
   - id: sudoku_4.s
     # very hard problem with more solutions (about 60 000, slow to find)
-    timeout: 10     # 29.0s
+    timeout: 40     # 29.0s
     
 
 # OK, checked: 13.4.2020            
