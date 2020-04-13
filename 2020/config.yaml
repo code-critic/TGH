@@ -158,9 +158,9 @@
     lang: CPP-11
   tests:
   - id: sudoku_1.s
-    time: 5
+    timeout: 5
   - id: sudoku_hard.s
-    time: 26
+    timeout: 26
     
     
 # OK, checked: 11.4.2019        
