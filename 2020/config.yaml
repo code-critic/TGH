@@ -75,7 +75,7 @@
 # OK, checked: 11.4.2019      
 - id: BIGLOKO1
   name: Zeleznice
-  avail: 2020-03-30 00:00:00
+  avail: 2020-09-30 00:00:00
   reference:
     name: bigloko.py
     lang: PY-367
@@ -97,7 +97,7 @@
 # OK, checked: 11.4.2019        
 - id: SCHEDULE
   name: Rozvrh
-  avail: 2020-03-30 00:00:00
+  avail: 2020-09-30 00:00:00
   reference:
     name: schedule_no_numpy.py
     lang: PY-367
@@ -152,7 +152,7 @@
 
 - id: BSUDOGOB
   name: Sudoku
-  avail: 2020-03-30 00:00:00
+  avail: 2020-09-30 00:00:00
   reference:
     name: sudoku.cpp
     lang: CPP-11
@@ -191,7 +191,7 @@
 # OK, checked: 11.4.2019            
 - id: DELIVERY
   name: Dodávky elektřiny
-  avail: 2020-03-30 00:00:00
+  avail: 2020-09-30 00:00:00
   reference:
     name: delivery.py
     lang: PY-367
