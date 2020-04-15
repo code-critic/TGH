@@ -1,4 +1,18 @@
 
+# test excercise
+- id: TRANSPOSE
+  name: Tranzpozice matice (zkušební úloha)
+  avail: 2020-09-30 00:00:00
+  reference:
+    name: main.py
+    lang: PY-367
+  tests:
+    - id: TRANSPOSE_01
+      timeout: 5
+      size: 10
+      random: 3
+
+
 # generated outputs 12.4.2020    
 # OK, checked: 13.4.2020    
 - id: MINSPILL
