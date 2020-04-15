@@ -8,14 +8,18 @@ který automatizovaně spouští a vyhodnocuje výsledky odevzdaných programů.
 Úkolem je matici načíst, transponovat, vypsat nové rozměry matice a následně ji vypsat
 
 ## Ukázka vstupu
+```
 2 3
 0 1 0
 1 1 0
 1 1 1
+```
 
 
 ## Ukázka výstupu
+```
 3 2
 0 1 1
 1 1 1
 0 0 1
+```
