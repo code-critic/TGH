@@ -31,35 +31,29 @@ parser.add_option(
 def printM(m):
     print('\n'.join([' '.join([str(j) for j in i]) for i in m]))
 
-def printS(m):
-    for i, j in enumerate(m):
-        adj = [chr(k+65) for k, l in enumerate(j) if l > 0]
-        print(f'{chr(i+65)}:', ' '.join(adj))
-
 options, args = parser.parse_args()
 if options.size is not None:
-    random.seed(options.rand + 12345)
-
-    rows, cols = 8, 13
-    r = 0.8
-
-    if options.rand == 1:
-        rows, cols = 4, 4
-        r = 0.5
-
-    if options.rand == 2:
-        rows, cols = 6, 6
-        r = 0.5
-
-    if options.rand == 3:
-        rows, cols = 8, 8
-        r = 0.8
+    random.seed(options.rand + 1234)
 
     def pick():
-        return 1 if random.random() > r else 0
+        return 1 if random.random() > 0.80 else 0
 
 
-    m = [[0 if i == j else pick() for i in range(cols)] for j in range(rows)]
+    a, b = 2, 6
+
+    if options.rand == 2:
+        a, b = 6, 10
+
+    if options.rand == 3:
+        a, b = 10, 16
+
+    rows, cols = randint(a, b), randint(a, b)
+
+    if options.rand < 3:
+        rows = cols
+
+
+    m = [[pick() for i in range(cols)] for j in range(rows)]
 
 
     print(rows, cols)
@@ -77,26 +71,7 @@ for i in range(rows):
 
 # transpose
 m = zip(*m)
-printS(m)
-#printS(m)
 
-
-# 1: 3
-# 2: 1 3
-# 3: 1 4
-# 4: 2
-
-# 0 0 1 0
-# 1 0 1 0
-# 1 0 0 1
-# 0 1 0 0
-
-# 1: 2 3
-# 2: 4
-# 3: 1 2
-# 4: 3
-
-# 0 1 1 0
-# 0 0 0 1
-# 1 1 0 0
-# 0 0 1 0
+print(cols, rows)
+printM(m)
+exit(0)
