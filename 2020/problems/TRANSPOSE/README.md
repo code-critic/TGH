@@ -24,7 +24,6 @@ Vrcholy jsou značeny písmeny `A, B, C, ...`
 ```
 
 ![](/static/imgs/TRANSPOSE-example.png)
-![](TRANSPOSE-example.png)
 
 ## Ukázka výstupu
 ```
