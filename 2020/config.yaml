@@ -1,3 +1,5 @@
+# Java minimal runtim is about 0.26 so we should set minimum times to about 0.15
+
 
 # test excercise
 - id: TRANSPOSE
@@ -24,15 +26,15 @@
     lang: PY-367
   tests:
   - id: MINSPILL_01.s
-    timeout: 0.1
+    timeout: 0.15
   - id: MINSPILL_02.s
-    timeout: 0.1
+    timeout: 0.15
   - id: MINSPILL_03.s
-    timeout: 0.1
+    timeout: 0.15
   - id: MINSPILL_04.s
-    timeout: 0.1
+    timeout: 0.15
   - id: MINSPILL_05.s
-    timeout: 0.1
+    timeout: 0.15
         
   - id: MINSPILL_19000.s    
     timeout: 0.3         # 1s
@@ -58,16 +60,16 @@
     lang: PY-367
   tests:
   - id: idos_3.s          
-    timeout: 0.1          # 0.12 s
+    timeout: 0.15         # 0.12 s
   - id: idos_5.s
-    timeout: 0.1          # 0.12 s
+    timeout: 0.15          # 0.12 s
   
   - id: idos_8.s
-    timeout: 0.1           # 0.12 s
+    timeout: 0.15           # 0.12 s
   - id: idos_10.s
-    timeout: 0.1           # 0.17 s
+    timeout: 0.15           # 0.17 s
   - id: idos_20.s
-    timeout: 0.1           # 0.17 s
+    timeout: 0.15           # 0.17 s
   - id: idos_100.s
     timeout: 0.2           # 0.7 s
   - id: idos_200.s
@@ -103,13 +105,13 @@
     lang: PY-367
   tests:
   - id: BIGLOKO1_1.s
-    timeout: 0.1            # 0.11 s
+    timeout: 0.15            # 0.11 s
   - id: BIGLOKO1_2.s
-    timeout: 0.1            # 0.06 s
+    timeout: 0.15            # 0.06 s
   - id: BIGLOKO1_100.s
-    timeout: 0.1            # 0.07 s
+    timeout: 0.15            # 0.07 s
   - id: BIGLOKO1_1000.s
-    timeout: 0.1            # 0.17 s
+    timeout: 0.15            # 0.17 s
   - id: BIGLOKO1_10k.s
     timeout: 0.3            # 0.82 s
   - id: BIGLOKO1_100k.s
@@ -127,19 +129,19 @@
   timeout: 70
   tests:
   - id: SCHEDULE_1.s
-    timeout: 0.1              # 0.06 s  
+    timeout: 0.15              # 0.06 s  
   - id: SCHEDULE_2
     size: 100
-    timeout: 0.1              # 0.11 s
+    timeout: 0.15              # 0.11 s
   - id: SCHEDULE_3
     size: 101
-    timeout: 0.1              # 0.12 s
+    timeout: 0.15              # 0.12 s
   - id: SCHEDULE_4
     size: 102
-    timeout: 0.1              # 0.12 s
+    timeout: 0.15              # 0.12 s
   - id: SCHEDULE_5
     size: 103
-    timeout: 0.1              # 0.12 s
+    timeout: 0.15              # 0.12 s
   - id: SCHEDULE_51
     size: 290
     timeout: 2                # 6 s
@@ -208,16 +210,16 @@
     lang: PY-367
   tests:
   - id: DELIVERY_01.s
-    timeout: 0.1        # 0.12s
+    timeout: 0.15        # 0.12s
   - id: DELIVERY_02.s
-    timeout: 0.1        # 0.12s
+    timeout: 0.15        # 0.12s
   - id: DELIVERY_03.s    
-    timeout: 0.1        # 0.07s
+    timeout: 0.15        # 0.07s
   - id: DELIVERY_05.s
-    timeout: 0.1        # 0.12s
+    timeout: 0.15        # 0.12s
   - id: DELIVERY_06
     size: 10
-    timeout: 0.1        # 0.21s
+    timeout: 0.15        # 0.21s
   - id: DELIVERY_07
     size: 30
     timeout: 0.2        # 0.57s
