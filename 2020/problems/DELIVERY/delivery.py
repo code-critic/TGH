@@ -37,8 +37,8 @@ class Network:
         self.read(in_stream)
 
     def read(self, in_stream):
-        n_source, n_sink, n_junction, n_edges = [int(v) for v in in_stream.readline().split()]
-        self.n_vtx = n_source + n_junction + n_sink
+        n_source, n_junction, n_edges = [int(v) for v in in_stream.readline().split()]
+        self.n_vtx = n_source + n_junction 
         sources = range(0, n_source)
         cap_sources = [ int(in_stream.readline()) for _ in range(n_source)]
         self.total_source = sum(cap_sources)
@@ -205,8 +205,7 @@ def make_data(in_stream, problem_size):
 
     n_vtxs = problem_size * problem_size
     n_sources = problem_size
-    n_junctions = problem_size * (problem_size - 2)
-    n_sinks = problem_size
+    n_junctions = problem_size * (problem_size - 1)    
     edges = []
     dxy = [ (dx, dy) for dx in [-1, 0, 1] for dy in [-1, 0, 1] if (dx, dy) != (0, 0) ]
 
@@ -221,9 +220,9 @@ def make_data(in_stream, problem_size):
                     if u < v:
                         edges.append((u, v, cap))
     sources = [ randint(1, 100) for _ in range(n_sources)]
-    sinks  = list(range(n_sources, n_sources + n_sinks))
+    sinks  = list(range(n_vtxs))
     problem_setup = io.StringIO()
-    problem_setup.write("{} {} {} {}\n".format(n_sources, n_sinks, n_junctions, len(edges)))
+    problem_setup.write("{} {} {}\n".format(n_sources, n_junctions, len(edges)))
     for s in sources:
         problem_setup.write("{}\n".format(s))
     for e in edges:
