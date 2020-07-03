@@ -40,20 +40,23 @@ class BigLoko:
 
         
     def check_unique(self):
-        return self.heap[0][0] != self.heap[1][0] and self.heap[0][0] != self.heap[2][0]
-
+        if len(self.heap) < 2:
+            return True
+        min_three = min([h[0] for h in self.heap[1:3]])
+        return self.heap[0][0] != min_three
+      
     def prim(self, start_vtx = 0, known_unique=True):
         self.node_value[start_vtx] = (0, 0)
         self.heap = [((0,0), start_vtx)]
         heapq.heapify(self.heap)
 
         while len(self.heap):
-            try:
-                if not known_unique and not self.check_unique():
-                    raise Exception("Not unique: {}".format(self.heap[0:3]))
-                value, vtx = heapq.heappop(self.heap)
-            except IndexError:
-                pass
+            #try:
+            #except IndexError:
+                #pass
+            if not known_unique and not self.check_unique():
+                raise Exception("Not unique: {}".format(self.heap[0:3]))
+            value, vtx = heapq.heappop(self.heap)
             if value > self.node_value[vtx]:
                 continue
             self.node_value[vtx] = (0,0)
@@ -85,11 +88,11 @@ class BigLoko:
 """    
 
 
-def solve(in_stream, out_stream) :
+def solve(in_stream, out_stream, check) :
     n_vtx, edges = read_edges(in_stream)
     si = BigLoko(n_vtx, edges)
     #si.read_image(in_stream)
-    si.prim()
+    si.prim(known_unique=not check)
     s_tree = si.get_spanning_tree()
     for s in s_tree:
         out_stream.write("%d\n"%s)
@@ -103,24 +106,41 @@ def make_data(in_stream, problem_size):
     '''
     import numpy as np
     import scipy.spatial as sc_sp
+    from collections import deque
 
-
-    edges = []
-    # random texture in range 0, 1024
-    K = 6 + np.log(problem_size)
-    points = np.random.rand(problem_size, 2)
+    q = deque()
+    edges=[]
+    scale = np.sqrt(problem_size)
+    
+    neighbourhood = int(6 + np.log(problem_size))
+    points = scale * np.random.rand(problem_size, 2)
     kd_tree = sc_sp.KDTree(points, leafsize=10)
-    for i_pt, pt in enumerate(points):
-        k = int(K + np.random.randint(0, 10))
-        k = min(k, int(problem_size/2))
-        dists, neighbors = kd_tree.query(pt, k)
-        selected = np.random.choice(k, size = int(k/2) )
-
-        for d, ng in zip(dists[selected], neighbors[selected]):
-            price = int((1 + np.random.lognormal(0, 0.5))*d * 1000)
-            mark = np.random.choice([1,2,3, 4,5])
-            edges.append((i_pt, ng, price, mark))
-
+    point_parent = np.full(len(points), -1)
+    q.append(0)
+    point_parent[0] = 0
+    
+    while len(q):
+        i_point = q.popleft()
+        dists, neighbors = kd_tree.query(points[i_point], neighbourhood)    
+        selected = np.random.permutation(np.arange(neighbourhood, dtype=int))
+        use=[np.random.randint(1, 3), np.random.randint(0,1)]
+        
+        for s in selected:
+            d, ng = dists[s], neighbors[s]
+            #d = np.linalg.norm(points[i_point] - points[ng])
+            opened_ng = int(point_parent[ng] > -1)
+            if use[opened_ng] > 0:
+                q.append(ng)
+                point_parent[ng] = i_point
+                use[opened_ng]-=1
+                price = int(1 + np.random.uniform() * d * 10000000 )
+                #print(d, price)
+                mark = np.random.choice([1,2,3,4,5])
+                edges.append((i_point, ng, price, mark))
+            
+            if use[0] == 0 and use[1] == 0:
+                break
+            
     # Output setting
     in_stream.write("{} {}\n".format(problem_size, len(edges)))
     for edge in edges:
@@ -152,7 +172,7 @@ if options.size is not None:
     input_stream.seek(0)
     output_stream = io.StringIO()
     tick  = time.clock()
-    solve(input_stream, output_stream)
+    solve(input_stream, output_stream, check=True)
     tock = time.clock()
     #sys.stderr.write("time: {}\n".format(tock - tick))
     sys.stdout.write(input_stream.getvalue())
@@ -160,7 +180,7 @@ if options.size is not None:
 else :
     #with open("input_1", "r") as in_stream:
     #    solve(in_stream, sys.stdout)
-    solve(sys.stdin, sys.stdout)
+    solve(sys.stdin, sys.stdout, check=True)
 
 
 
