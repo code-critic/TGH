@@ -50,6 +50,7 @@ class BigLoko:
         self.heap = [((0,0), start_vtx)]
         heapq.heapify(self.heap)
 
+        n_processed = 0
         while len(self.heap):
             #try:
             #except IndexError:
@@ -59,6 +60,7 @@ class BigLoko:
             value, vtx = heapq.heappop(self.heap)
             if value > self.node_value[vtx]:
                 continue
+            n_processed += 1
             self.node_value[vtx] = (0,0)
             for ngh, i_edge in self.adj[vtx]:
                 e_value = self.edges[i_edge].value
@@ -68,7 +70,8 @@ class BigLoko:
                     self.node_value[ngh] = e_value
                     self.node_parent_edge[ngh] = i_edge
                     heapq.heappush(self.heap, (e_value, ngh) )
-
+        assert(n_processed == len(self.node_parent_edge))
+      
     def get_spanning_tree(self):
         return self.node_parent_edge[1:]
 
@@ -119,12 +122,15 @@ def make_data(in_stream, problem_size):
     q.append(0)
     point_parent[0] = 0
     
+    
     while len(q):
         i_point = q.popleft()
         dists, neighbors = kd_tree.query(points[i_point], neighbourhood)    
         selected = np.random.permutation(np.arange(neighbourhood, dtype=int))
-        use=[np.random.randint(1, 3), np.random.randint(0,1)]
-        
+        # bounded connection to both unvisited and opened nodes
+        #use=[np.random.randint(1, 3), np.random.randint(0,1)]
+        # connect all unvisited
+        use=[len(selected), np.random.randint(0,1)]
         for s in selected:
             d, ng = dists[s], neighbors[s]
             #d = np.linalg.norm(points[i_point] - points[ng])
@@ -140,6 +146,10 @@ def make_data(in_stream, problem_size):
             
             if use[0] == 0 and use[1] == 0:
                 break
+    
+    #print("unconnected: ", sum( point_parent[ip] == -1 for ip, p in enumerate(points)))
+    for ip, p in enumerate(points):
+        assert(point_parent[ip] > -1)
             
     # Output setting
     in_stream.write("{} {}\n".format(problem_size, len(edges)))
@@ -161,13 +171,14 @@ parser.add_option("-r", dest="rand", default=False, help="Use non-deterministic 
 options, args = parser.parse_args()
 
 #random.seed(1234)
-random.seed()
+
 
 if options.rand:
     random.seed(options.rand)
 
 if options.size is not None:
     input_stream = io.StringIO()
+    random.seed(options.size)
     make_data(input_stream, int(options.size))
     input_stream.seek(0)
     output_stream = io.StringIO()
