@@ -7,9 +7,6 @@ import sys
 import time
 import heapq
 
-import numpy as np
-import scipy.spatial as sc_sp
-from collections import deque
 
 
 class Edge:
@@ -102,6 +99,10 @@ CLOSED = 2
 
 class MakeGraph:
     def __init__(self, problem_size):
+        import numpy as np
+        import scipy.spatial as sc_sp
+        from collections import deque
+
         self.q = deque()
         self.edges=[]
         scale = np.sqrt(problem_size)
@@ -121,6 +122,9 @@ class MakeGraph:
         #sys.stderr.write(f"n_weights:  {len(weights)}\n")
 
     def bfs(self, start_point):
+        import numpy as np
+        
+        
         if self.status[start_point] == CLOSED:
             return
         assert self.status[start_point] == FREE, self.status[start_point]
