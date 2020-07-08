@@ -7,6 +7,10 @@ import sys
 import time
 import heapq
 
+import numpy as np
+import scipy.spatial as sc_sp
+from collections import deque
+
 
 class Edge:
     def __init__(self, idx, va, vb, price, mark):
@@ -14,7 +18,6 @@ class Edge:
         self.va = va
         self.vb = vb
         self.value = (mark, price)
-
 
 
 def read_edges(in_stream):
@@ -77,14 +80,7 @@ class BigLoko:
 
 
 
-
-
-
-
-
 """        
-    
-      
     # output reduced graph
     #graph.graph_output(in_stream)
     in_stream.write(image_stream.getvalue())
@@ -100,6 +96,82 @@ def solve(in_stream, out_stream, check) :
     for s in s_tree:
         out_stream.write("%d\n"%s)
 
+FREE = 0
+OPEN = 1
+CLOSED = 2
+
+class MakeGraph:
+    def __init__(self, problem_size):
+        self.q = deque()
+        self.edges=[]
+        scale = np.sqrt(problem_size)
+
+        self.neighbourhood = int(6 + np.log(problem_size))
+        self.points = scale * np.random.rand(problem_size, 2)
+        self.kd_tree = sc_sp.KDTree(self.points, leafsize=10)
+        self.status = np.full(len(self.points), FREE)
+        
+        r_weights = np.random.rand(self.neighbourhood * problem_size, 2)
+        max_price = 1e6 * scale    # in thousends Kc
+        weights = np.empty_like(r_weights, dtype=int)
+        weights[:, 0] = r_weights[:,0] * max_price
+        weights[:, 1] = r_weights[:, 1] * 5 + 1
+        weights = np.unique(weights, axis=0)
+        self.weights = np.random.permutation(weights)
+        sys.stderr.write(f"n_weights:  {len(weights)}\n")
+
+    def bfs(self, start_point):
+        if self.status[start_point] == CLOSED:
+            return
+        assert self.status[start_point] == FREE, self.status[start_point]
+        self.status[start_point] = OPEN
+        self.q.append(start_point)        
+        neighbourhood = self.neighbourhood        
+        
+        while len(self.q):
+            i_point = self.q.popleft()            
+            assert self.status[i_point] == OPEN, self.status[i_point]
+            
+            dists, neighbors = self.kd_tree.query(self.points[i_point], neighbourhood)    
+            selected = np.random.permutation(np.arange(neighbourhood, dtype=int))
+            # bounded connection to both unvisited and opened nodes
+            #use=[np.random.randint(1, 3), np.random.randint(0,1)]
+            # connect all unvisited
+            n_duplicate = np.random.randint(2,len(selected))
+            use=[len(selected), n_duplicate]
+            for s in selected:
+                d, ng = dists[s], neighbors[s]
+                if ng == i_point:
+                    continue
+                #d = np.linalg.norm(points[i_point] - points[ng])
+                opened_ng = int(self.status[ng] >= OPEN)
+                if not opened_ng:
+                    # unvisited neighbour
+                    assert self.status[ng] == FREE
+                    self.status[ng] = OPEN
+                    self.q.append(ng)
+                
+                if use[opened_ng] > 0:
+                    # visited                              
+                    use[opened_ng]-=1
+                    price, mark = self.weights[len(self.edges)]
+                    #sys.stderr.write(f"{(i_point, ng, price, mark)}\n")
+                    self.edges.append((i_point, ng, price, mark))            
+                    
+                      
+                if use[0] == 0 and use[1] == 0:
+                    break
+            self.status[i_point] = CLOSED
+
+    def get_edges(self):
+        for ip in range(len(self.points)):
+            self.bfs(ip)
+        for ip, p in enumerate(self.points):
+            assert(self.status[ip] == CLOSED)
+
+        return self.edges
+
+
 
 def make_data(in_stream, problem_size):
     '''
@@ -107,49 +179,22 @@ def make_data(in_stream, problem_size):
     2. Make Kd tree
     3. For every point find K  neighbors, and generate edges to them with random weights.
     '''
-    import numpy as np
-    import scipy.spatial as sc_sp
-    from collections import deque
 
-    q = deque()
-    edges=[]
-    scale = np.sqrt(problem_size)
-    
-    neighbourhood = int(6 + np.log(problem_size))
-    points = scale * np.random.rand(problem_size, 2)
-    kd_tree = sc_sp.KDTree(points, leafsize=10)
-    point_parent = np.full(len(points), -1)
-    q.append(0)
-    point_parent[0] = 0
-    
-    
-    while len(q):
-        i_point = q.popleft()
-        dists, neighbors = kd_tree.query(points[i_point], neighbourhood)    
-        selected = np.random.permutation(np.arange(neighbourhood, dtype=int))
-        # bounded connection to both unvisited and opened nodes
-        #use=[np.random.randint(1, 3), np.random.randint(0,1)]
-        # connect all unvisited
-        use=[len(selected), np.random.randint(0,1)]
-        for s in selected:
-            d, ng = dists[s], neighbors[s]
-            #d = np.linalg.norm(points[i_point] - points[ng])
-            opened_ng = int(point_parent[ng] > -1)
-            if use[opened_ng] > 0:
-                q.append(ng)
-                point_parent[ng] = i_point
-                use[opened_ng]-=1
-                price = int(1 + np.random.uniform() * d * 10000000 )
-                #print(d, price)
-                mark = np.random.choice([1,2,3,4,5])
-                edges.append((i_point, ng, price, mark))
-            
-            if use[0] == 0 and use[1] == 0:
-                break
-    
-    #print("unconnected: ", sum( point_parent[ip] == -1 for ip, p in enumerate(points)))
-    for ip, p in enumerate(points):
-        assert(point_parent[ip] > -1)
+    mg = MakeGraph(problem_size)
+    edges = mg.get_edges()
+    sys.stderr.write(f"n edges: {len(edges)}\n")
+    eset={}
+    for e in edges:
+        u,v,price, mark = e
+        key = (price, mark)
+        val = (u, v)
+        if key in eset:
+             sys.stderr.write(f"duplicate: {e}  of {eset[key]}\n")
+        eset[key] = val
+       
+    #print("unconnected: ", sum( status[ip] == -1 for ip, p in enumerate(points)))
+    #for ip, p in enumerate(points):
+        #assert(status[ip] > -1)
             
     # Output setting
     in_stream.write("{} {}\n".format(problem_size, len(edges)))
