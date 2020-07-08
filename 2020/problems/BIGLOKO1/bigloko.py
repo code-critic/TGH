@@ -118,7 +118,7 @@ class MakeGraph:
         weights[:, 1] = r_weights[:, 1] * 5 + 1
         weights = np.unique(weights, axis=0)
         self.weights = np.random.permutation(weights)
-        sys.stderr.write(f"n_weights:  {len(weights)}\n")
+        #sys.stderr.write(f"n_weights:  {len(weights)}\n")
 
     def bfs(self, start_point):
         if self.status[start_point] == CLOSED:
@@ -182,15 +182,15 @@ def make_data(in_stream, problem_size):
 
     mg = MakeGraph(problem_size)
     edges = mg.get_edges()
-    sys.stderr.write(f"n edges: {len(edges)}\n")
-    eset={}
-    for e in edges:
-        u,v,price, mark = e
-        key = (price, mark)
-        val = (u, v)
-        if key in eset:
-             sys.stderr.write(f"duplicate: {e}  of {eset[key]}\n")
-        eset[key] = val
+    #sys.stderr.write(f"n edges: {len(edges)}\n")
+    #eset={}
+    #for e in edges:
+        #u,v,price, mark = e
+        #key = (price, mark)
+        #val = (u, v)
+        #if key in eset:
+             #sys.stderr.write(f"duplicate: {e}  of {eset[key]}\n")
+        #eset[key] = val
        
     #print("unconnected: ", sum( status[ip] == -1 for ip, p in enumerate(points)))
     #for ip, p in enumerate(points):
