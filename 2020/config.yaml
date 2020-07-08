@@ -115,13 +115,13 @@
     timeout: 0.15            # 0.17 s
   - id: BIGLOKO1_10k
     size: 10000
-    timeout: 0.3            # 0.82 s
+    timeout: 0.3            # 1 s
   - id: BIGLOKO1_100k.s
     #size: 100000           # problem s generovanim na serveru
-    timeout: 3              # 10 s
-  - id: BIGLOKO1_300k.s
+    timeout: 3             # 10 s
+  #- id: BIGLOKO1_300k.s
     #size: 100000           # problem s generovanim na serveru
-    timeout: 3              # 10 s
+  #  timeout: 3              # 10 s
     
 # OK, checked: 13.4.2020        
 - id: SCHEDULE
