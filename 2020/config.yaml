@@ -99,7 +99,7 @@
 - id: BIGLOKO1
   name: Zeleznice
   avail: 2020-09-30 00:00:00
-  timeout:  30        # 12s
+  timeout:  120        # 12s
   reference:
     name: bigloko.py
     lang: PY-367
@@ -117,11 +117,11 @@
     size: 10000
     timeout: 0.3            # 1 s
   - id: BIGLOKO1_100k.s
-    #size: 100000           # problem s generovanim na serveru
+    size: 100000           # problem s generovanim na serveru
     timeout: 3             # 10 s
-  #- id: BIGLOKO1_300k.s
+  - id: BIGLOKO1_300k.s
     #size: 100000           # problem s generovanim na serveru
-  #  timeout: 3              # 10 s
+    timeout: 12              # 10 s
     
 # OK, checked: 13.4.2020        
 - id: SCHEDULE
