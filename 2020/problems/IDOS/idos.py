@@ -29,27 +29,36 @@ TODO:
 
 class EventData:
     _max_int = int(4e9)
+    
     def __init__(self):
         self.status = 0 
         self.connections = []
         self.n_use=0;
         self.reset()
+    
     def add(self, event):
         self.connections.append(event)
+    
     def visited(self):
         return self.status >0
+    
     def expanded(self):
         return self.status >1
+    
     def visit(self):
         self.status = 1
+    
     def expand(self):
         self.status = 2
+    
     def reset(self):
         self.previous_all = []
         self.n_transits = EventData._max_int
+    
     def update(self,  previous_event, transits):
         self.previous_all = [ previous_event ]
         self.n_transits = transits
+    
     def append_previous(self,  previous_event):
         self.previous_all.append(previous_event)
 
@@ -57,6 +66,9 @@ class EventData:
 class Idos :
     def __init__(self):
         self.events = {}
+        # (station, leave_time) -> EventData
+        self.topological=[]
+        # Topological order of event keys (statin, leave_time)
         
     def read_graph(self, in_stream):
         '''
@@ -99,6 +111,7 @@ class Idos :
                     target_event = (i_station, second)                    
                     self.events[(i_station, first)].add(target_event)
                 
+        
         self.topological_sort()
         #print self.topological
         #for key,e in self.events.items():
@@ -116,7 +129,6 @@ class Idos :
         Alternative, just sort by event times.
         '''
         
-        self.topological=[]
         stack=[]
         for (event, event_data) in self.events.items():
             if (not event_data.visited()) :
