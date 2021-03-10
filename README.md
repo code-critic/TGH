@@ -1,2 +1,4 @@
-# TGH
-TGH course for the [CC](https://github.com/code-critic/codecritic)
+# TGHE - Teorie grafů a her
+
+Semestrální úlohy pro předmět TGHE studijního progamu Informační technologie.
+
