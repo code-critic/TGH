@@ -168,7 +168,7 @@
 # OK, checked: 13.4.2020            
 - id: DELIVERY
   name: Dodávky elektřiny
-  avail: 2020-09-30 00:00:00
+  avail: 2021-09-30 23:59:00
   reference:
     name: delivery.py
     lang: PY-367
@@ -197,40 +197,42 @@
     size: 200
     timeout: 3          # 8.0s
 
-#RELCONN:
-  #id: RELCONN
-  #name: Nejspolehlivejsi cesta
-  #ref_script: relconn_general.cc
-  #ref_lang: CPP11
-  #input:
-  #- comment: problem size 6
-    #id: RELCONN_1
-    #time: 0.1                  # 0.008      ... measured time of reference solution
-  #- problem_size: 8
-    #id: RELCONN_2
-    #time: 0.1                 # 0.008
-  #- problem_size: 9
-    #id: RELCONN_3
-    #time: 0.1                 # 0.008
-  #- problem_size: 8
-    #id: RELCONN_4
-    #time: 0.1                 # 0.008
-  #- problem_size: 11
-    #id: RELCONN_5
-    #time: 0.1                 # 0.008
-    #random: true
-  #- problem_size: 100
-    #id: RELCONN_6
-    #time: 0.1                 # 0.030
-  #- problem_size: 1000
-    #id: RELCONN_7
-    #time: 0.5                  # 0.250
-  #- problem_size: 10000
-    #id: RELCONN_8
-    #time: 5                    # 2.5
-  #- problem_size: 20000
-    #id: RELCONN_9
-    #time: 10                   # 5 
+RELCONN:
+  id: RELCONN
+  name: Nejspolehlivejsi cesta
+  avail: 2021-09-30 23:59:00
+  reference:
+    name: relconn_general.cc
+    lang: CPP11
+  tests:
+  - #comment: problem size 6
+    id: RELCONN_1
+    timeout: 0.1                  # 0.008      ... measured time of reference solution
+  - id: RELCONN_2 
+    size: 8    
+    timeout: 0.1                 # 0.008
+  - id: RELCONN_3
+    size: 9    
+    timeout: 0.1                 # 0.008
+  - id: RELCONN_4
+    size: 8
+    timeout: 0.1                 # 0.008
+  - id: RELCONN_5
+    size: 11
+    timeout: 0.1                 # 0.008
+    random: true
+  - id: RELCONN_6
+    size: 100
+    timeout: 0.1                 # 0.030
+  - id: RELCONN_7
+    size: 1000
+    timeout: 0.5                  # 0.250
+  - id: RELCONN_8
+    size: 10000
+    timeout: 5                    # 2.5
+  - id: RELCONN_9
+    size: 20000
+    timeout: 10                   # 5 
       
     
     
