@@ -5,6 +5,7 @@
 - id: TRANSPOSE
   name: Tranzpozice matice (zkušební úloha)
   avail: 2021-09-30 23:59:00
+  timeout:  120        # 12s
   reference:
     name: main.py
     lang: PY-367
