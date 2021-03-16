@@ -126,8 +126,8 @@
     timeout: 12              # 10 s
 
     
-MINOS:
-  id: MINOS
+
+- id: MINOS
   name: Bludiste
   ref_script: minos.cpp
   ref_lang: CPP11
