@@ -145,12 +145,12 @@
   - id: MINOS_3
     size: 20
     timeout: 0.02
-    random: false
+    #random: false
 
   - id: MINOS_4
     size: 30
     timeout: 0.02
-    random: true
+    #random: true
   - id: MINOS_5
     size: 1000      # 0.008 s   
     timeout: 0.02
