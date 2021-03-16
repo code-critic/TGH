@@ -220,7 +220,7 @@
   - id: RELCONN_5
     size: 11
     timeout: 0.1                 # 0.008
-    random: true
+    #random: true
   - id: RELCONN_6
     size: 100
     timeout: 0.1                 # 0.030
