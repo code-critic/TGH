@@ -98,7 +98,7 @@
 # OK, checked: 13.4.2020      
 - id: BIGLOKO1
   name: Zeleznice
-  avail: 2020-09-30 00:00:00
+  avail: 2021-09-30 23:59:00
   timeout:  120        # 12s
   reference:
     name: bigloko.py
@@ -129,37 +129,40 @@
 
 - id: MINOS
   name: Bludiste
-  ref_script: minos.cpp
-  ref_lang: CPP11
-  input:
+  avail: 2021-09-30 23:59:00
+  timeout:  120
+  reference:
+    name: minos.cpp
+    lang: CPP11
+  tests:
   - #size: 3x3
     id: MINOS_1
-    time: 0.02
+    timeout: 0.02
   - #size: 5x5
     id: MINOS_2
-    time: 0.01
+    timeout: 0.01
     
   - id: MINOS_3
-    problem_size: 20
-    time: 0.02
+    size: 20
+    timeout: 0.02
     random: false
 
   - id: MINOS_4
-    problem_size: 30
-    time: 0.02
+    size: 30
+    timeout: 0.02
     random: true
   - id: MINOS_5
-    problem_size: 1000      # 0.008 s   
-    time: 0.02
+    size: 1000      # 0.008 s   
+    timeout: 0.02
   - id: MINOS_6
     #problem_size: 10000
-    time: 0.1               # 0.063 s  # size limit for small modulo, should be n*m < 2000
+    timeout: 0.1               # 0.063 s  # size limit for small modulo, should be n*m < 2000
   - id: MINOS_7
-    problem_size: 100000
-    time: 1                 # 0.414 s
+    size: 100000
+    timeout: 1                 # 0.414 s
   - id: MINOS_8
-    problem_size: 300004
-    time: 2                 # 0.414 s
+    size: 300004
+    timeout: 2                 # 0.414 s
 
 
 # OK, checked: 13.4.2020            
