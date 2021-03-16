@@ -102,7 +102,7 @@
   avail: 2021-09-30 23:59:00
   timeout:  120        # 12s
   reference:
-    name: bigloko.py
+    name: main.py
     lang: PY-367
   tests:
   - id: BIGLOKO1_1.s
