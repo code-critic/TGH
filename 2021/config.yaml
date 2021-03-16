@@ -3,7 +3,7 @@
 
 # test excercise
 - id: TRANSPOSE
-  name: Tranzpozice matice (zkušební úloha)
+  name: Tranzpozice grafu (zkušební úloha)
   avail: 2021-09-30 23:59:00
   timeout:  120        # 12s
   reference:
