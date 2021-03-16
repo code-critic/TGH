@@ -197,8 +197,8 @@
     size: 200
     timeout: 3          # 8.0s
 
-RELCONN:
-  id: RELCONN
+
+- id: RELCONN
   name: Nejspolehlivejsi cesta
   avail: 2021-09-30 23:59:00
   reference:
@@ -239,7 +239,7 @@ RELCONN:
 # OK, checked: 13.4.2020        
 - id: SCHEDULE
   name: Rozvrh
-  avail: 2020-09-30 00:00:00
+  avail: 2021-09-30 23:59:00
   reference:
     name: schedule_no_numpy.py
     lang: PY-367
