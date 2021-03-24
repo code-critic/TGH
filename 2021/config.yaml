@@ -118,7 +118,7 @@
     timeout: 0.15            # 0.17 s
   - id: BIGLOKO1_10k
     size: 10000
-    timeout: 0.3            # 1 s
+    timeout: 0.1            # 1 s
   - id: BIGLOKO1_100k
     size: 100000           # problem s generovanim na serveru
     timeout: 3             # 10 s
