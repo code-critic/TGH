@@ -4,7 +4,7 @@ import io
 from random import randint
 import random
 import sys
-import time
+#import time
 import heapq
 
 
@@ -231,9 +231,9 @@ if options.size is not None:
     make_data(input_stream, int(options.size))
     input_stream.seek(0)
     output_stream = io.StringIO()
-    tick  = time.clock()
+    #tick  = time.clock()
     solve(input_stream, output_stream, check=True)
-    tock = time.clock()
+    #tock = time.clock()
     #sys.stderr.write("time: {}\n".format(tock - tick))
     sys.stdout.write(input_stream.getvalue())
 
