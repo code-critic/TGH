@@ -118,9 +118,9 @@
     timeout: 0.15            # 0.17 s
   - id: BIGLOKO1_10k
     size: 10000
-    timeout: 0.1            # 1 s
+    timeout: 0.3            # 1 s
   - id: BIGLOKO1_100k
-    size: 100000           # problem s generovanim na serveru
+    #size: 100000           # problem s generovanim na serveru
     timeout: 3             # 10 s
   - id: BIGLOKO1_300k.s
     #size: 100000           # problem s generovanim na serveru
@@ -134,7 +134,7 @@
   timeout:  120
   reference:
     name: minos.cpp
-    lang: CPP11
+    lang: CPP
   tests:
   - #size: 3x3
     id: MINOS_1
@@ -204,7 +204,7 @@
   avail: 2021-09-30 23:59:00
   reference:
     name: relconn_general.cc
-    lang: CPP11
+    lang: CPP
   tests:
   - #comment: problem size 6
     id: RELCONN_1
