@@ -1,5 +1,5 @@
 # files in input and output dir will not be as a part of this repository
-**/problems/*/input/*
+#**/problems/*/input/*
 **/problems/*/output/*
 **/problems/*/.error/*
 

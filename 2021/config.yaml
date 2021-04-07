@@ -120,11 +120,11 @@
     size: 10000
     timeout: 1.4             # 0.72 s
   - id: BIGLOKO1_100k
-    size: 100000           # problem s generovanim na serveru
-    timeout: 5  #3             # 10 s
+    size: 100000             # problem s generovanim na serveru
+    timeout: 40               # 10 s
   - id: BIGLOKO1_300k.s
     #size: 100000           # problem s generovanim na serveru
-    timeout: 2             # 27 s
+    timeout: 12             # 27 s
 
     
 
@@ -137,33 +137,33 @@
     lang: CPP
   tests:
   - #size: 3x3
-    id: MINOS_1
-    timeout: 0.02
+    id: MINOS_1.s
+    timeout: 0.02           # 0.003
   - #size: 5x5
-    id: MINOS_2
-    timeout: 0.01
+    id: MINOS_2.s
+    timeout: 0.01           # 0.003
     
   - id: MINOS_3
     size: 20
-    timeout: 0.02
+    timeout: 0.02           # 0.003
     #random: false
 
   - id: MINOS_4
     size: 30
-    timeout: 0.02
+    timeout: 0.02           # 0.004
     #random: true
   - id: MINOS_5
-    size: 1000      # 0.008 s   
-    timeout: 0.02
+    size: 1000              
+    timeout: 0.02           # 0.008 s   
   - id: MINOS_6
-    #problem_size: 10000
+    size: 10000
     timeout: 0.1               # 0.063 s  # size limit for small modulo, should be n*m < 2000
   - id: MINOS_7
     size: 100000
-    timeout: 1                 # 0.414 s
+    timeout: 1.5                 # 0.9 s
   - id: MINOS_8
     size: 300004
-    timeout: 2                 # 0.414 s
+    timeout: 3                 # 1.8 s
 
 
 # OK, checked: 13.4.2020            
