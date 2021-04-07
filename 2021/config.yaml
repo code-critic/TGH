@@ -121,10 +121,10 @@
     timeout: 1.4             # 0.72 s
   - id: BIGLOKO1_100k
     size: 100000             # problem s generovanim na serveru
-    timeout: 40               # 10 s
+    timeout: 3               # 10 s
   - id: BIGLOKO1_300k.s
     #size: 100000           # problem s generovanim na serveru
-    timeout: 12             # 27 s
+    timeout: 9             # 27 s
 
     
 
@@ -157,13 +157,13 @@
     timeout: 0.02           # 0.008 s   
   - id: MINOS_6
     size: 10000
-    timeout: 0.1               # 0.063 s  # size limit for small modulo, should be n*m < 2000
+    timeout: 0.1               # 0.063 s  # size limit for random generator with small modulo, should be n*m < 2000
   - id: MINOS_7
     size: 100000
-    timeout: 1.5                 # 0.9 s
+    timeout: 0.6                 # 0.3 s
   - id: MINOS_8
     size: 300004
-    timeout: 3                 # 1.8 s
+    timeout: 2                 # 1.0 s
 
 
 # OK, checked: 13.4.2020            
