@@ -167,11 +167,12 @@
 
 
 # OK, checked: 13.4.2020            
-- id: DELIVERY
+- id: DELIVERY  
   name: Dodávky elektřiny
   avail: 2021-09-30 23:59:00
   reference:
     name: delivery.py
+    # Reference Edmond/Karp algorithm with complexity N*M*M.
     lang: PY-367
   tests:
   - id: DELIVERY_01.s
@@ -184,20 +185,14 @@
     timeout: 0.15        # 0.12s
   - id: DELIVERY_06
     size: 10
-    timeout: 0.15        # 0.21s
+    timeout: 20        # 0.21s
   - id: DELIVERY_07
     size: 30
-    timeout: 0.2        # 0.57s
+    timeout: 20        # 0.57s
   - id: DELIVERY_08
-    size: 70
-    timeout: 0.6        # 1.6s
-  - id: DELIVERY_09     
-    size: 100
-    timeout: 0.8        # 2.5s
-  - id: DELIVERY_10
-    size: 200
-    timeout: 3          # 8.0s
-
+    size: 45
+    timeout: 20        # 1.6s
+  
 
 - id: RELCONN
   name: Nejspolehlivejsi cesta
@@ -208,32 +203,32 @@
   tests:
   - #comment: problem size 6
     id: RELCONN_1
-    timeout: 0.1                  # 0.008      ... measured time of reference solution
+    timeout: 0.1                  # 0.003      ... measured time of reference solution
   - id: RELCONN_2 
     size: 8    
-    timeout: 0.1                 # 0.008
+    timeout: 0.1                 # 0.003
   - id: RELCONN_3
     size: 9    
-    timeout: 0.1                 # 0.008
+    timeout: 0.1                 # 0.003
   - id: RELCONN_4
     size: 8
-    timeout: 0.1                 # 0.008
+    timeout: 0.1                 # 0.003
   - id: RELCONN_5
     size: 11
-    timeout: 0.1                 # 0.008
+    timeout: 0.1                 # 0.003
     #random: true
   - id: RELCONN_6
     size: 100
-    timeout: 0.1                 # 0.030
+    timeout: 0.2                 # 0.032
   - id: RELCONN_7
     size: 1000
-    timeout: 0.5                  # 0.250
+    timeout: 1                  # 0.16
   - id: RELCONN_8
     size: 10000
-    timeout: 5                    # 2.5
+    timeout: 3c                   # 1.6
   - id: RELCONN_9
     size: 20000
-    timeout: 10                   # 5 
+    timeout: 8                   # 4 
       
     
     

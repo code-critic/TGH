@@ -1,6 +1,6 @@
 # Dodávky elektřiny 
 
-Model elektrické rozvodné sítě je tvořen elektrárnami $0$, \dots $n_e-1$  a rozvodnami $n_e$, \dots, $n_e + n_r-1$. 
+Model elektrické rozvodné sítě je tvořen elektrárnami $0, \dots, n_e-1$  a rozvodnami $n_e, \dots, n_e + n_r-1$. 
 Tyto **přípojné body** jsou propojeny sítí čítající  $n_v$ vodičů. Jeden vodič vždy spojuje právě dva 
 přípojné body a má definovaný maximální výkon, který jím může být přenášen (v obou směrech stejný). 
 Žádné dvě elektrárny nejsou přímo propojeny a pro každou je znám její výkon. 
