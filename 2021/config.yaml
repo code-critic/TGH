@@ -105,8 +105,8 @@
     name: main.py
     lang: PY-367
   tests:
-  - id: BIGLOKO1_1.s
-    timeout: 0.15            # 0.11 s
+  - id: BIGLOKO1_1.s         # Reference solution duration on code critic server 2021 
+    timeout: 0.15            # 0.06 s
   - id: BIGLOKO1_2.s
     timeout: 0.15            # 0.06 s
   - id: BIGLOKO1_3.s
@@ -115,16 +115,16 @@
     timeout: 0.15            # 0.07 s
   - id: BIGLOKO1_1000
     size: 1000
-    timeout: 5   #0.15            # 0.17 s
+    timeout: 0.2             # 0.114 s
   - id: BIGLOKO1_10k
     size: 10000
-    timeout: 5    #0.3            # 1 s
+    timeout: 1.4             # 0.72 s
   - id: BIGLOKO1_100k
-    #size: 100000           # problem s generovanim na serveru
-    timeout: 10  #3             # 10 s
+    size: 100000           # problem s generovanim na serveru
+    timeout: 5  #3             # 10 s
   - id: BIGLOKO1_300k.s
     #size: 100000           # problem s generovanim na serveru
-    timeout: 12              # 10 s
+    timeout: 6              # 27 s
 
     
 
