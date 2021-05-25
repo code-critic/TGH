@@ -202,7 +202,7 @@
     lang: CPP
   tests:
   - #comment: problem size 6
-    id: RELCONN_1
+    id: RELCONN_1.s
     timeout: 0.1                  # 0.003      ... measured time of reference solution
   - id: RELCONN_2 
     size: 8    
