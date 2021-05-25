@@ -138,10 +138,10 @@
   tests:
   - #size: 3x3
     id: MINOS_1.s
-    timeout: 0.02           # 0.003
+    timeout: 0.015           # 0.003
   - #size: 5x5
     id: MINOS_2.s
-    timeout: 0.01           # 0.003
+    timeout: 0.015          # 0.003
     
   - id: MINOS_3
     size: 20
