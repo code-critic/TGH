@@ -176,22 +176,22 @@
     lang: PY-367
   tests:
   - id: DELIVERY_01.s
-    timeout: 0.15        # 0.12s
+    timeout: 0.1        # 0.12s
   - id: DELIVERY_02.s
-    timeout: 0.15        # 0.12s
+    timeout: 0.1        # 0.12s
   - id: DELIVERY_03.s    
-    timeout: 0.15        # 0.07s
+    timeout: 0.1        # 0.07s
   - id: DELIVERY_05.s
-    timeout: 0.15        # 0.12s
+    timeout: 0.1        # 0.12s
   - id: DELIVERY_06
     size: 10
-    timeout: 20        # 0.21s
+    timeout: 0.1        # 0.21s
   - id: DELIVERY_07
     size: 30
-    timeout: 20        # 0.57s
+    timeout: 2        # 0.57s
   - id: DELIVERY_08
     size: 45
-    timeout: 20        # 1.6s
+    timeout: 4        # 1.6s
   
 
 - id: RELCONN
